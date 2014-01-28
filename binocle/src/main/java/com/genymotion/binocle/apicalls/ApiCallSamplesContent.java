@@ -1,5 +1,7 @@
 package com.genymotion.binocle.apicalls;
 
+import com.genymotion.binocle.BatterySampleFragment;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,14 +20,14 @@ public class ApiCallSamplesContent {
     /**
      * A map of sample (apiCalls) items, by ID.
      */
-    public static Map<Integer, ApiCallSamplesItem> ITEM_MAP = new HashMap<Integer, ApiCallSamplesItem>();
+    public static Map<String, ApiCallSamplesItem> ITEM_MAP = new HashMap<String, ApiCallSamplesItem>();
 
     static {
         // Add all api calls sample items.
-        addItem(new ApiCallSamplesItem(1, "Battery"));
-        addItem(new ApiCallSamplesItem(2, "Gps"));
-        addItem(new ApiCallSamplesItem(3, "Radio"));
-        addItem(new ApiCallSamplesItem(4, "Orientation"));
+        addItem(new ApiCallSamplesItem(BatterySampleFragment.TAG, "Battery"));
+        addItem(new ApiCallSamplesItem("2", "Gps"));
+        addItem(new ApiCallSamplesItem("3", "Radio"));
+        addItem(new ApiCallSamplesItem("4", "Orientation"));
     }
 
     private static void addItem(ApiCallSamplesItem item) {
@@ -37,10 +39,10 @@ public class ApiCallSamplesContent {
      * A apiCallsSample item representing a piece of content.
      */
     public static class ApiCallSamplesItem {
-        public Integer id;
+        public String id;
         public String content;
 
-        public ApiCallSamplesItem(Integer id, String content) {
+        public ApiCallSamplesItem(String id, String content) {
             this.id = id;
             this.content = content;
         }

@@ -4,28 +4,8 @@
     <string name="app_name">Binocle</string>
     <string name="title_apicall_detail">ApiCall Detail</string>
 
-    <string name="mode_title">Mode</string>
-    <string name="get_mode">Get mode</string>
-    <string name="mode">Mode:</string>
-    <string name="mode_use_host">Use host values</string>
-    <string name="mode_use_manual">Use manual values</string>
-    <string name="level_title">Title</string>
-    <string name="get_battery_level">Get battery level</string>
-    <string name="change_battery_level">Change battery level:</string>
-    <string name="status_title">Status</string>
-    <string name="get_battery_status">Get battery status</string>
-
-
-    Get Mode
     <!-- battery labels -->
-    <string name="battery_mode">Current battery mode is %s</string>
-    <string name="set_battery_mode">Battery mode set to %s</string>
-    <string name="battery_level">Current battery level is %d</string>
-    <string name="set_battery_level">Battery level set to %d</string>
-    <string name="battery_status">Current battery status is %s</string>
-    <string name="set_battery_status">Battery level set to %s</string>
-    <string name="plugged_to_a_power_source">Plugged to a power source:</string>
-    <string name="charging">Charging</string>
-    <string name="discharging">Discharging</string>
+    <string name="battery_warning">Warning! there is less than 10% power left!</string>
+    <string name="battery_explain">This activity will display a warning if the device is not plugged and if there is less than 10percent power left in battery.</string>
 
 </resources>

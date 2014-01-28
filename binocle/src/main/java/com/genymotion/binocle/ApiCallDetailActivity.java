@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.MenuItem;
 
 /**
@@ -39,17 +40,17 @@ public class ApiCallDetailActivity extends FragmentActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            int id = getIntent().getIntExtra(ApiCallDetailFragment.ARG_ITEM_ID, 1);
-            arguments.putInt(ApiCallDetailFragment.ARG_ITEM_ID, id);
+            String tag = getIntent().getStringExtra(ApiCallDetailFragment.ARG_ITEM_ID);
+            arguments.putString(ApiCallDetailFragment.ARG_ITEM_ID, tag);
             Fragment fragment;
-            if (id == 1) {
+            if (BatterySampleFragment.TAG.equals(tag)) {
                 fragment = new BatterySampleFragment();
             } else {
                 fragment = new ApiCallDetailFragment();
             }
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.apicall_detail_container, fragment)
+                    .add(R.id.apicall_detail_container, fragment, tag)
                     .commit();
         }
     }

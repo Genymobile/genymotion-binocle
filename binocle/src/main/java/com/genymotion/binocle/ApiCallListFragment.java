@@ -46,7 +46,7 @@ public class ApiCallListFragment extends ListFragment {
         /**
          * Callback for when an item has been selected.
          */
-        public void onItemSelected(Integer id);
+        public void onItemSelected(String id);
     }
 
     /**
@@ -55,7 +55,7 @@ public class ApiCallListFragment extends ListFragment {
      */
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
-        public void onItemSelected(Integer id) {
+        public void onItemSelected(String id) {
         }
     };
 
