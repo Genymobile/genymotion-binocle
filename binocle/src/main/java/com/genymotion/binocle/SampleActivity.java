@@ -72,6 +72,8 @@ public class SampleActivity extends FragmentActivity {
             fragment = new BatterySampleFragment();
         } else if (GpsSampleFragment.TAG.equals(tag)) {
             fragment = new GpsSampleFragment();
+        } else if (RadioSampleFragment.TAG.equals(tag)) {
+            fragment = new RadioSampleFragment();
         } else {
             fragment = new BatterySampleFragment();
         }

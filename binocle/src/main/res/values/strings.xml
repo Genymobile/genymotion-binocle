@@ -15,4 +15,8 @@
     <string name="gps_currentLng">Current longitude is %f</string>
     <string name="gps_distanceToDalvik">Dalvik is %d km away</string>
 
+
+    <!-- radio label -->
+    <string name="radio_device_type">Your device is recognized as a: %s</string>
+
 </resources>

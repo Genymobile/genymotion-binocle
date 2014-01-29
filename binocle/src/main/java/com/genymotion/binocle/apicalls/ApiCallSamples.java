@@ -2,6 +2,7 @@ package com.genymotion.binocle.apicalls;
 
 import com.genymotion.binocle.BatterySampleFragment;
 import com.genymotion.binocle.GpsSampleFragment;
+import com.genymotion.binocle.RadioSampleFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class ApiCallSamples {
         // Add all api calls sample items.
         addItem(new ApiCallSamplesItem(BatterySampleFragment.TAG, "Battery"));
         addItem(new ApiCallSamplesItem(GpsSampleFragment.TAG, "Gps"));
-        addItem(new ApiCallSamplesItem("3", "Radio"));
+        addItem(new ApiCallSamplesItem(RadioSampleFragment.TAG, "Radio"));
         addItem(new ApiCallSamplesItem("4", "Orientation"));
     }
 
