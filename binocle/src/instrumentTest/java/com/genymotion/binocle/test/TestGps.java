@@ -9,19 +9,20 @@ import android.widget.TextView;
 import com.genymotion.api.Battery;
 import com.genymotion.api.GenymotionApiNotFoundException;
 import com.genymotion.api.GenymotionManager;
-import com.genymotion.binocle.SampleActivity;
 import com.genymotion.binocle.BatterySampleFragment;
+import com.genymotion.binocle.GpsSampleFragment;
 import com.genymotion.binocle.R;
+import com.genymotion.binocle.SampleActivity;
 import junit.framework.Assert;
 
 /**
- * Created by pascal on 1/28/14.
+ * Created by pascal on 1/29/14.
  */
-public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity> {
+public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
 
-    BatterySampleFragment fragmentBattery;
+    GpsSampleFragment fragmentGps;
 
-    public TestBattery() {
+    public TestGps() {
         super(SampleActivity.class);
     }
 
@@ -29,20 +30,20 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
     protected void setUp() throws Exception {
         super.setUp();
 
-        //add parameter to allow activity to start and create fragment BatterySampleFragment.
-        Intent batteryIntent;
-        batteryIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
-        batteryIntent.putExtra(SampleActivity.ARG_ITEM_ID, BatterySampleFragment.TAG);
-        setActivityIntent(batteryIntent);
+        //add parameter to allow activity to start and create fragment GpsSampleFragment.
+        Intent gpsIntent;
+        gpsIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
+        gpsIntent.putExtra(SampleActivity.ARG_ITEM_ID, GpsSampleFragment.TAG);
+        setActivityIntent(gpsIntent);
 
         //create activity and get fragment back
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        fragmentBattery = (BatterySampleFragment) fragmentManager.findFragmentByTag(BatterySampleFragment.TAG);
+        fragmentGps = (GpsSampleFragment) fragmentManager.findFragmentByTag(GpsSampleFragment.TAG);
     }
 
     public void testBatteryWarning() {
 
-        TextView tvWarning = (TextView)fragmentBattery.getView().findViewById(R.id.tv_batteryWarning);
+        TextView tvWarning = (TextView)fragmentGps.getView().findViewById(R.id.tv_gpsWarning);
         GenymotionManager genymo;
         try {
             genymo = GenymotionManager.getGenymotionManager(getActivity());
@@ -51,30 +52,30 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
             return;
         }
 
-        // Change battery level and charging status
-        Log.d(BatterySampleFragment.TAG, "Force full battery + charging");
-        genymo.getBattery().setMode(Battery.Mode.MANUAL);
-        genymo.getBattery().setLevel(100);
-        genymo.getBattery().setStatus(Battery.Status.CHARGING);
+        // position to reykjavik (257km away))
+        Log.d(GpsSampleFragment.TAG, "Force position to Reykjavik");
+        genymo.getGps().setLatitude(64.13367829);
+        genymo.getGps().setLongitude(-21.8964386);
         try {
             Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
         } catch (InterruptedException ie) {}
         getInstrumentation().waitForIdleSync();
 
-        // Ensure warning is hidden
+        // Then ensure warning is hidden
         Assert.assertEquals(tvWarning.getVisibility(), View.GONE);
 
-        // Change battery level and charging status
-        Log.d(BatterySampleFragment.TAG, "Force low battery");
-        genymo.getBattery().setLevel(3);
-        genymo.getBattery().setStatus(Battery.Status.DISCHARGING);
+        // position near Dalvik
+        Log.d(GpsSampleFragment.TAG, "Force position near Dalvik");
+        genymo.getGps().setLatitude(65.9446);
+        genymo.getGps().setLongitude(-18.35744619);
         try {
             Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
         } catch (InterruptedException ie) {}
         getInstrumentation().waitForIdleSync();
 
-        // Then ensure warning is visible
+        // Ensure warning is shown
         Assert.assertEquals(tvWarning.getVisibility(), View.VISIBLE);
+
     }
 
 }

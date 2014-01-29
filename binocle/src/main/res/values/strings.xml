@@ -8,4 +8,11 @@
     <string name="battery_warning">Warning! there is less than 10% power left!</string>
     <string name="battery_explain">This activity will display a warning if the device is not plugged and if there is less than 10percent power left in battery.</string>
 
+    <!-- gps labels -->
+    <string name="gps_warning">The force is strong here, as Dalvik is near.</string>
+    <string name="gps_explain">This activity will display a warning if the device is localised near (100 km) Dalvik.</string>
+    <string name="gps_currentLat">Current latitude is %f</string>
+    <string name="gps_currentLng">Current longitude is %f</string>
+    <string name="gps_distanceToDalvik">Dalvik is %d km away</string>
+
 </resources>

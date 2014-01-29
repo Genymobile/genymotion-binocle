@@ -1,6 +1,7 @@
 package com.genymotion.binocle.apicalls;
 
 import com.genymotion.binocle.BatterySampleFragment;
+import com.genymotion.binocle.GpsSampleFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,9 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Helper class for providing api calls sample content
+ * Helper class for providing api calls sample title
  */
-public class ApiCallSamplesContent {
+public class ApiCallSamples {
 
     /**
      * An array of sample (apiCalls) items.
@@ -25,7 +26,7 @@ public class ApiCallSamplesContent {
     static {
         // Add all api calls sample items.
         addItem(new ApiCallSamplesItem(BatterySampleFragment.TAG, "Battery"));
-        addItem(new ApiCallSamplesItem("2", "Gps"));
+        addItem(new ApiCallSamplesItem(GpsSampleFragment.TAG, "Gps"));
         addItem(new ApiCallSamplesItem("3", "Radio"));
         addItem(new ApiCallSamplesItem("4", "Orientation"));
     }
@@ -36,20 +37,20 @@ public class ApiCallSamplesContent {
     }
 
     /**
-     * A apiCallsSample item representing a piece of content.
+     * A apiCallsSample item representing a piece of title.
      */
     public static class ApiCallSamplesItem {
         public String id;
-        public String content;
+        public String title;
 
-        public ApiCallSamplesItem(String id, String content) {
+        public ApiCallSamplesItem(String id, String title) {
             this.id = id;
-            this.content = content;
+            this.title = title;
         }
 
         @Override
         public String toString() {
-            return content;
+            return title;
         }
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -17,7 +18,9 @@ import android.view.MenuItem;
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link ApiCallDetailFragment}.
  */
-public class ApiCallDetailActivity extends FragmentActivity {
+public class SampleActivity extends FragmentActivity {
+
+    public static final String ARG_ITEM_ID = "item_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +42,8 @@ public class ApiCallDetailActivity extends FragmentActivity {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            Bundle arguments = new Bundle();
-            String tag = getIntent().getStringExtra(ApiCallDetailFragment.ARG_ITEM_ID);
-            arguments.putString(ApiCallDetailFragment.ARG_ITEM_ID, tag);
-            Fragment fragment;
-            if (BatterySampleFragment.TAG.equals(tag)) {
-                fragment = new BatterySampleFragment();
-            } else {
-                fragment = new ApiCallDetailFragment();
-            }
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.apicall_detail_container, fragment, tag)
-                    .commit();
+            String tag = getIntent().getStringExtra(ARG_ITEM_ID);
+            SampleActivity.createAndAddFragment(tag, getSupportFragmentManager());
         }
     }
 
@@ -70,5 +62,22 @@ public class ApiCallDetailActivity extends FragmentActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void createAndAddFragment(String tag, FragmentManager fm) {
+        Bundle arguments = new Bundle();
+        arguments.putString(ARG_ITEM_ID, tag);
+        Fragment fragment;
+        if (BatterySampleFragment.TAG.equals(tag)) {
+            fragment = new BatterySampleFragment();
+        } else if (GpsSampleFragment.TAG.equals(tag)) {
+            fragment = new GpsSampleFragment();
+        } else {
+            fragment = new BatterySampleFragment();
+        }
+        fragment.setArguments(arguments);
+        fm.beginTransaction()
+                .add(R.id.apicall_detail_container, fragment, tag)
+                .commit();
     }
 }

@@ -56,6 +56,9 @@ public class BatterySampleFragment extends Fragment{
         //retrieve widgets
         tvBatteryWarning = (TextView)rootView.findViewById(R.id.tv_batteryWarning);
 
+        //default values
+        tvBatteryWarning.setVisibility(View.GONE);
+
         return rootView;
     }
 
