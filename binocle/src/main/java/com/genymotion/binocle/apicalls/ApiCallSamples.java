@@ -29,7 +29,7 @@ public class ApiCallSamples {
         addItem(new ApiCallSamplesItem(BatterySampleFragment.TAG, "Battery"));
         addItem(new ApiCallSamplesItem(GpsSampleFragment.TAG, "Gps"));
         addItem(new ApiCallSamplesItem(RadioSampleFragment.TAG, "Radio"));
-        addItem(new ApiCallSamplesItem("4", "Orientation"));
+        //addItem(new ApiCallSamplesItem(IdSampleFragment, "ID"));
     }
 
     private static void addItem(ApiCallSamplesItem item) {

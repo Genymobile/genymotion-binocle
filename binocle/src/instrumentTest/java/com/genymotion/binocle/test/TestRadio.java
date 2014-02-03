@@ -27,7 +27,7 @@ public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> 
     protected void setUp() throws Exception {
         super.setUp();
 
-        //change ID before creating activity
+        //change IMEI before creating activity
         GenymotionManager genymo;
         genymo = GenymotionManager.getGenymotionManager(getActivity());
         genymo.getRadio().setDeviceId("353918050000000"); //<- faking the Nexus 4.
@@ -37,7 +37,6 @@ public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> 
         radioIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
         radioIntent.putExtra(SampleActivity.ARG_ITEM_ID, RadioSampleFragment.TAG);
         setActivityIntent(radioIntent);
-
 
         //create activity and get fragment back
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
