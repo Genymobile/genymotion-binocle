@@ -6,10 +6,8 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import com.genymotion.api.Battery;
-import com.genymotion.api.GenymotionApiNotFoundException;
 import com.genymotion.api.GenymotionManager;
-import com.genymotion.binocle.BatterySampleFragment;
+import com.genymotion.api.NotGenymotionDeviceException;
 import com.genymotion.binocle.GpsSampleFragment;
 import com.genymotion.binocle.R;
 import com.genymotion.binocle.SampleActivity;
@@ -47,7 +45,7 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
         GenymotionManager genymo;
         try {
             genymo = GenymotionManager.getGenymotionManager(getActivity());
-        } catch (GenymotionApiNotFoundException ganf) {
+        } catch (NotGenymotionDeviceException ex) {
             fail("test must be run on Genymotion device");
             return;
         }

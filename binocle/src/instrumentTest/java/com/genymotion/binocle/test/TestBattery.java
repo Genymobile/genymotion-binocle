@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.genymotion.api.Battery;
-import com.genymotion.api.GenymotionApiNotFoundException;
+import com.genymotion.api.NotGenymotionDeviceException;
 import com.genymotion.api.GenymotionManager;
 import com.genymotion.binocle.SampleActivity;
 import com.genymotion.binocle.BatterySampleFragment;
@@ -46,7 +46,7 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
         GenymotionManager genymo;
         try {
             genymo = GenymotionManager.getGenymotionManager(getActivity());
-        } catch (GenymotionApiNotFoundException ganf) {
+        } catch (NotGenymotionDeviceException ex) {
             fail("test must be run on Genymotion device");
             return;
         }
