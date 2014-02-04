@@ -27,7 +27,7 @@ public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> 
 
         //change IMEI before creating activity
         GenymotionManager genymo;
-        genymo = GenymotionManager.getGenymotionManager(getActivity());
+        genymo = GenymotionManager.getGenymotionManager(getInstrumentation().getContext());
         genymo.getRadio().setDeviceId("353918050000000"); //<- faking the Nexus 4.
 
         //add parameter to allow activity to start and create fragment GpsSampleFragment.
