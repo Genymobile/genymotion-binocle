@@ -39,7 +39,7 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
         fragmentGps = (GpsSampleFragment) fragmentManager.findFragmentByTag(GpsSampleFragment.TAG);
     }
 
-    public void testBatteryWarning() {
+    public void testGpsWarning() {
 
         TextView tvWarning = (TextView)fragmentGps.getView().findViewById(R.id.tv_gpsWarning);
         GenymotionManager genymo;

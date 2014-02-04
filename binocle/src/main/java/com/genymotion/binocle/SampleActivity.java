@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.MenuItem;
 
 /**
@@ -43,7 +43,7 @@ public class SampleActivity extends FragmentActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             String tag = getIntent().getStringExtra(ARG_ITEM_ID);
-            SampleActivity.createAndAddFragment(tag, getSupportFragmentManager());
+            createAndReplaceFragment(tag, getSupportFragmentManager());
         }
     }
 
@@ -64,22 +64,27 @@ public class SampleActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void createAndAddFragment(String tag, FragmentManager fm) {
-        Bundle arguments = new Bundle();
-        arguments.putString(ARG_ITEM_ID, tag);
-        Fragment fragment;
-        if (BatterySampleFragment.TAG.equals(tag)) {
-            fragment = new BatterySampleFragment();
-        } else if (GpsSampleFragment.TAG.equals(tag)) {
-            fragment = new GpsSampleFragment();
-        } else if (RadioSampleFragment.TAG.equals(tag)) {
-            fragment = new RadioSampleFragment();
-        } else {
-            fragment = new BatterySampleFragment();
+    public static void createAndReplaceFragment(String tag, FragmentManager fm) {
+
+        Fragment fragment = fm.findFragmentByTag(tag);
+
+        if(fragment == null) {
+            if (BatterySampleFragment.TAG.equals(tag)) {
+                fragment = new BatterySampleFragment();
+            }
+            else if (GpsSampleFragment.TAG.equals(tag)) {
+                fragment = new GpsSampleFragment();
+            }
+            else if (RadioSampleFragment.TAG.equals(tag)) {
+                fragment = new RadioSampleFragment();
+            }
         }
-        fragment.setArguments(arguments);
-        fm.beginTransaction()
-                .add(R.id.apicall_detail_container, fragment, tag)
-                .commit();
+
+        if(fragment != null) {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.apicall_detail_container, fragment, tag);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
+        }
     }
 }

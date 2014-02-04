@@ -60,7 +60,7 @@ public class ApiCallListActivity extends FragmentActivity
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
-            SampleActivity.createAndAddFragment(id, getSupportFragmentManager());
+            SampleActivity.createAndReplaceFragment(id, getSupportFragmentManager());
 
         } else {
             // In single-pane mode, simply start the detail activity
