@@ -78,6 +78,9 @@ public class SampleActivity extends FragmentActivity {
             else if (RadioSampleFragment.TAG.equals(tag)) {
                 fragment = new RadioSampleFragment();
             }
+            else if (AndroidIdSampleFragment.TAG.equals(tag)) {
+                fragment = new AndroidIdSampleFragment();
+            }
         }
 
         if(fragment != null) {

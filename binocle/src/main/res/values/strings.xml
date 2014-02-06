@@ -19,4 +19,7 @@
     <!-- radio label -->
     <string name="radio_device_type">Your device is recognized as a: %s</string>
 
+    <!-- android_id label -->
+    <string name="android_id">Your ANDROID_ID is: %s</string>
+
 </resources>

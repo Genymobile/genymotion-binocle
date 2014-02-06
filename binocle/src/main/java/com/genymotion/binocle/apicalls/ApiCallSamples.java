@@ -1,5 +1,6 @@
 package com.genymotion.binocle.apicalls;
 
+import com.genymotion.binocle.AndroidIdSampleFragment;
 import com.genymotion.binocle.BatterySampleFragment;
 import com.genymotion.binocle.GpsSampleFragment;
 import com.genymotion.binocle.RadioSampleFragment;
@@ -29,7 +30,7 @@ public class ApiCallSamples {
         addItem(new ApiCallSamplesItem(BatterySampleFragment.TAG, "Battery"));
         addItem(new ApiCallSamplesItem(GpsSampleFragment.TAG, "Gps"));
         addItem(new ApiCallSamplesItem(RadioSampleFragment.TAG, "Radio"));
-        //addItem(new ApiCallSamplesItem(IdSampleFragment, "ID"));
+        addItem(new ApiCallSamplesItem(AndroidIdSampleFragment.TAG, "Android_ID"));
     }
 
     private static void addItem(ApiCallSamplesItem item) {
