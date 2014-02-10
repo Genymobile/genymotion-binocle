@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 /**
@@ -22,6 +24,8 @@ import android.view.MenuItem;
 public class SampleActivity extends ActionBarActivity {
 
     public static final String ARG_ITEM_ID = "item_id";
+
+    static String currentTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,13 @@ public class SampleActivity extends ActionBarActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.binocle, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
@@ -61,6 +72,10 @@ public class SampleActivity extends ActionBarActivity {
             //
             NavUtils.navigateUpTo(this, new Intent(this, ApiCallListActivity.class));
             return true;
+        } else if (id == R.id.menu_refresh) {
+            if (currentTag != null) {
+                createAndReplaceFragment(currentTag, getSupportFragmentManager());
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -69,19 +84,17 @@ public class SampleActivity extends ActionBarActivity {
 
         Fragment fragment = fm.findFragmentByTag(tag);
 
-        if(fragment == null) {
-            if (BatterySampleFragment.TAG.equals(tag)) {
-                fragment = new BatterySampleFragment();
-            }
-            else if (GpsSampleFragment.TAG.equals(tag)) {
-                fragment = new GpsSampleFragment();
-            }
-            else if (RadioSampleFragment.TAG.equals(tag)) {
-                fragment = new RadioSampleFragment();
-            }
-            else if (AndroidIdSampleFragment.TAG.equals(tag)) {
-                fragment = new AndroidIdSampleFragment();
-            }
+        if (BatterySampleFragment.TAG.equals(tag)) {
+            fragment = new BatterySampleFragment();
+        }
+        else if (GpsSampleFragment.TAG.equals(tag)) {
+            fragment = new GpsSampleFragment();
+        }
+        else if (RadioSampleFragment.TAG.equals(tag)) {
+            fragment = new RadioSampleFragment();
+        }
+        else if (AndroidIdSampleFragment.TAG.equals(tag)) {
+            fragment = new AndroidIdSampleFragment();
         }
 
         if(fragment != null) {
@@ -89,6 +102,9 @@ public class SampleActivity extends ActionBarActivity {
             ft.replace(R.id.apicall_detail_container, fragment, tag);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
+            currentTag = tag;
+        } else {
+            currentTag = null;
         }
     }
 }

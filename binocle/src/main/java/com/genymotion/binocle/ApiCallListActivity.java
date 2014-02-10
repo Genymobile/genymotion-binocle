@@ -3,6 +3,11 @@ package com.genymotion.binocle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 
 /**
@@ -21,7 +26,7 @@ import android.support.v4.app.FragmentActivity;
  * {@link ApiCallListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class ApiCallListActivity extends FragmentActivity
+public class ApiCallListActivity extends ActionBarActivity
         implements ApiCallListFragment.Callbacks {
 
     /**
@@ -29,6 +34,8 @@ public class ApiCallListActivity extends FragmentActivity
      * device.
      */
     private boolean mTwoPane;
+
+    static String currentTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,24 @@ public class ApiCallListActivity extends FragmentActivity
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.binocle, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_refresh) {
+            if (currentTag != null) {
+                SampleActivity.createAndReplaceFragment(currentTag, getSupportFragmentManager());
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     /**
      * Callback method from {@link ApiCallListFragment.Callbacks}
      * indicating that the item with the given ID was selected.
@@ -60,6 +85,7 @@ public class ApiCallListActivity extends FragmentActivity
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
+            currentTag = id;
             SampleActivity.createAndReplaceFragment(id, getSupportFragmentManager());
 
         } else {

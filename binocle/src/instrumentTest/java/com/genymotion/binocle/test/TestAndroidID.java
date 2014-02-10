@@ -30,7 +30,7 @@ public class TestAndroidID extends ActivityInstrumentationTestCase2<SampleActivi
 
         GenymotionManager genymotion;
         genymotion = GenymotionManager.getGenymotionManager(getInstrumentation().getContext());
-        genymotion.getId().setAndroidId("8ec000b646bce009");
+        genymotion.getId().setAndroidId("ea7fc13784a3a5ea");
 
         //add parameter to allow activity to start and create fragment GpsSampleFragment.
         Intent androiIdIntent;
@@ -50,6 +50,6 @@ public class TestAndroidID extends ActivityInstrumentationTestCase2<SampleActivi
 
         TextView tvAndroidId = (TextView) fragmentAndroidID.getView().findViewById(R.id.tv_androidId);
         String text = tvAndroidId.getText().toString();
-        Assert.assertTrue(text.endsWith("8ec000b646bce009"));
+        Assert.assertTrue(text.endsWith(fragmentAndroidID.SECRET_MESSAGE));
     }
 }

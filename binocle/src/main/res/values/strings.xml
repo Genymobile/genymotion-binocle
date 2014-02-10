@@ -3,6 +3,7 @@
 
     <string name="app_name">Binocle</string>
     <string name="title_apicall_detail">ApiCall Detail</string>
+    <string name="menu_refresh">Refresh</string>
 
     <!-- battery labels -->
     <string name="battery_warning">Warning! there is less than 10% power left!</string>
@@ -20,6 +21,6 @@
     <string name="radio_device_type">Your device is recognized as a: %s</string>
 
     <!-- android_id label -->
-    <string name="android_id">Your ANDROID_ID is: %s</string>
+    <string name="android_id">Secret file will be decoded if ANDROID_ID equals: %s</string>
 
 </resources>
