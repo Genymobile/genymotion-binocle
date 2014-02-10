@@ -44,6 +44,5 @@ public class AndroidIdSampleFragment extends Fragment {
                 Secure.ANDROID_ID);
 
         tvAndroidId.setText(getResources().getString(R.string.android_id, androidId));
-        Log.d(TAG, androidId);
     }
 }

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 /**
@@ -18,7 +19,7 @@ import android.view.MenuItem;
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link ApiCallDetailFragment}.
  */
-public class SampleActivity extends FragmentActivity {
+public class SampleActivity extends ActionBarActivity {
 
     public static final String ARG_ITEM_ID = "item_id";
 
@@ -28,7 +29,7 @@ public class SampleActivity extends FragmentActivity {
         setContentView(R.layout.activity_apicall_detail);
 
         // Show the Up button in the action bar.
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
