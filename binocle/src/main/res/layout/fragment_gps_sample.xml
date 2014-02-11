@@ -1,47 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              tools:context="com.genymotion.binocle.GpsSampleFragment"
-              android:orientation="vertical"
-              android:padding="10dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context="com.genymotion.binocle.GpsSampleFragment">
 
     <TextView
         android:id="@+id/tv_gpsWarning"
+        style="@style/warning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/gps_warning"
-        style="@style/warning"
-        />
+        android:text="@string/gps_warning" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/gps_explain"
-        />
+        android:text="@string/gps_explain" />
 
     <TextView
         android:id="@+id/tv_gpsCurrentLat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/gps_currentLat"
-        />
+        android:text="@string/gps_currentLat" />
 
     <TextView
         android:id="@+id/tv_gpsCurrentLng"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/gps_currentLng"
-        />
+        android:text="@string/gps_currentLng" />
 
     <TextView
         android:id="@+id/tv_gpsDistanceToDalvik"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/gps_distanceToDalvik"
-        />
+        android:text="@string/gps_distanceToDalvik" />
 
 
 </LinearLayout>

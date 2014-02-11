@@ -44,10 +44,15 @@ public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> 
     public void testDeviceId() {
         try {
             Thread.sleep(2000); //Android need time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {}
+        } catch (InterruptedException ie) {
+        }
 
         TextView tvDeviceType = (TextView) fragmentRadio.getView().findViewById(R.id.tv_radioDeviceType);
-        Assert.assertTrue(tvDeviceType.getText().toString().endsWith("Nexus 4"));
+
+        String text;
+        text = tvDeviceType.getText().toString();
+
+        Assert.assertTrue(text.endsWith("Nexus 4"));
 
     }
 }

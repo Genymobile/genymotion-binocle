@@ -3,7 +3,6 @@ package com.genymotion.binocle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
@@ -17,15 +16,46 @@ import android.view.MenuItem;
  * activity is only used on handset devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
  * in a {@link ApiCallListActivity}.
- * <p>
- * This activity is mostly just a 'shell' activity containing nothing
- * more than a {@link ApiCallDetailFragment}.
  */
 public class SampleActivity extends ActionBarActivity {
 
     public static final String ARG_ITEM_ID = "item_id";
 
     static String currentTag;
+
+    public static void createAndReplaceFragment(String tag, FragmentManager fm) {
+
+        Fragment fragment = fm.findFragmentByTag(tag);
+
+        // Create fragment if it does not already exists
+        if (fragment == null) {
+            if (BatterySampleFragment.TAG.equals(tag)) {
+                fragment = new BatterySampleFragment();
+            } else if (GpsSampleFragment.TAG.equals(tag)) {
+                fragment = new GpsSampleFragment();
+            } else if (RadioSampleFragment.TAG.equals(tag)) {
+                fragment = new RadioSampleFragment();
+            } else if (AndroidIdSampleFragment.TAG.equals(tag)) {
+                fragment = new AndroidIdSampleFragment();
+            }
+        }
+
+        if (fragment != null) {
+            // If it is the current fragment, update it
+            if (tag.equals(currentTag)) {
+                fragment.onStart();
+            } else {
+                // Replace current fragment by new one
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.apicall_detail_container, fragment, tag);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.commit();
+                currentTag = tag;
+            }
+        } else {
+            currentTag = null;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,33 +108,5 @@ public class SampleActivity extends ActionBarActivity {
             }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public static void createAndReplaceFragment(String tag, FragmentManager fm) {
-
-        Fragment fragment = fm.findFragmentByTag(tag);
-
-        if (BatterySampleFragment.TAG.equals(tag)) {
-            fragment = new BatterySampleFragment();
-        }
-        else if (GpsSampleFragment.TAG.equals(tag)) {
-            fragment = new GpsSampleFragment();
-        }
-        else if (RadioSampleFragment.TAG.equals(tag)) {
-            fragment = new RadioSampleFragment();
-        }
-        else if (AndroidIdSampleFragment.TAG.equals(tag)) {
-            fragment = new AndroidIdSampleFragment();
-        }
-
-        if(fragment != null) {
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.apicall_detail_container, fragment, tag);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.commit();
-            currentTag = tag;
-        } else {
-            currentTag = null;
-        }
     }
 }

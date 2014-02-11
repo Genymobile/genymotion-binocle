@@ -8,14 +8,11 @@ import android.widget.TextView;
 import com.genymotion.api.GenymotionManager;
 import com.genymotion.binocle.AndroidIdSampleFragment;
 import com.genymotion.binocle.R;
-import com.genymotion.binocle.RadioSampleFragment;
 import com.genymotion.binocle.SampleActivity;
 
 import junit.framework.Assert;
 
-/**
- * Created by philippe on 2/6/14.
- */
+
 public class TestAndroidID extends ActivityInstrumentationTestCase2<SampleActivity> {
 
     AndroidIdSampleFragment fragmentAndroidID;
@@ -46,7 +43,8 @@ public class TestAndroidID extends ActivityInstrumentationTestCase2<SampleActivi
     public void testAndroidId() {
         try {
             Thread.sleep(2000); //Android need time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {}
+        } catch (InterruptedException ie) {
+        }
 
         TextView tvAndroidId = (TextView) fragmentAndroidID.getView().findViewById(R.id.tv_androidId);
         String text = tvAndroidId.getText().toString();

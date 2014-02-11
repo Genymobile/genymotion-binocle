@@ -6,16 +6,15 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
 import com.genymotion.api.GenymotionManager;
 import com.genymotion.api.NotGenymotionDeviceException;
 import com.genymotion.binocle.GpsSampleFragment;
 import com.genymotion.binocle.R;
 import com.genymotion.binocle.SampleActivity;
+
 import junit.framework.Assert;
 
-/**
- * Created by pascal on 1/29/14.
- */
 public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
 
     GpsSampleFragment fragmentGps;
@@ -41,7 +40,7 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
 
     public void testGpsWarning() {
 
-        TextView tvWarning = (TextView)fragmentGps.getView().findViewById(R.id.tv_gpsWarning);
+        TextView tvWarning = (TextView) fragmentGps.getView().findViewById(R.id.tv_gpsWarning);
         GenymotionManager genymo;
         try {
             genymo = GenymotionManager.getGenymotionManager(getActivity());
@@ -56,7 +55,8 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
         genymo.getGps().setLongitude(-21.8964386);
         try {
             Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {}
+        } catch (InterruptedException ie) {
+        }
         getInstrumentation().waitForIdleSync();
 
         // Then ensure warning is hidden
@@ -68,7 +68,8 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
         genymo.getGps().setLongitude(-18.35744619);
         try {
             Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {}
+        } catch (InterruptedException ie) {
+        }
         getInstrumentation().waitForIdleSync();
 
         // Ensure warning is shown

@@ -6,5 +6,5 @@
     For more on layout aliases, see:
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     -->
-    <item type="layout" name="activity_apicall_list">@layout/activity_apicall_twopane</item>
+    <item name="activity_apicall_list" type="layout">@layout/activity_apicall_twopane</item>
 </resources>

@@ -6,17 +6,16 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
 import com.genymotion.api.Battery;
-import com.genymotion.api.NotGenymotionDeviceException;
 import com.genymotion.api.GenymotionManager;
-import com.genymotion.binocle.SampleActivity;
+import com.genymotion.api.NotGenymotionDeviceException;
 import com.genymotion.binocle.BatterySampleFragment;
 import com.genymotion.binocle.R;
+import com.genymotion.binocle.SampleActivity;
+
 import junit.framework.Assert;
 
-/**
- * Created by pascal on 1/28/14.
- */
 public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity> {
 
     BatterySampleFragment fragmentBattery;
@@ -42,7 +41,7 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
 
     public void testBatteryWarning() {
 
-        TextView tvWarning = (TextView)fragmentBattery.getView().findViewById(R.id.tv_batteryWarning);
+        TextView tvWarning = (TextView) fragmentBattery.getView().findViewById(R.id.tv_batteryWarning);
         GenymotionManager genymo;
         try {
             genymo = GenymotionManager.getGenymotionManager(getActivity());
@@ -58,7 +57,8 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
         genymo.getBattery().setStatus(Battery.Status.CHARGING);
         try {
             Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {}
+        } catch (InterruptedException ie) {
+        }
         getInstrumentation().waitForIdleSync();
 
         // Ensure warning is hidden
@@ -70,7 +70,8 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
         genymo.getBattery().setStatus(Battery.Status.DISCHARGING);
         try {
             Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {}
+        } catch (InterruptedException ie) {
+        }
         getInstrumentation().waitForIdleSync();
 
         // Then ensure warning is visible

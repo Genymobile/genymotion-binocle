@@ -6,8 +6,6 @@
     </style>
 
     <style name="SectionTitle" parent="TextAppearance.AppCompat.Light.SearchResult.Title">
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@android:color/holo_blue_dark</item>
         <item name="android:paddingTop">10dp</item>
     </style>
 

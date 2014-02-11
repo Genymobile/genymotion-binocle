@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.genymotion.binocle" >
+    package="com.genymotion.binocle">
 
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-
-    <uses-sdk android:minSdkVersion="9"
-        android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.genymotion.binocle.ApiCallListActivity"
-            android:label="@string/app_name" >
+            android:name=".ApiCallListActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,10 +24,10 @@
         <activity
             android:name=".SampleActivity"
             android:label="@string/title_apicall_detail"
-            android:parentActivityName="com.genymotion.binocle.ApiCallListActivity" >
+            android:parentActivityName=".ApiCallListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.genymotion.binocle.ApiCallListActivity" />
+                android:value=".ApiCallListActivity" />
         </activity>
     </application>
 

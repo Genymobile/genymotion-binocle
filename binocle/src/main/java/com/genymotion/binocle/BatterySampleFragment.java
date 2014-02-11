@@ -13,14 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * Created by pascal on 1/2/14.
- */
-public class BatterySampleFragment extends Fragment{
+
+public class BatterySampleFragment extends Fragment {
 
     public static final String TAG = "Battery";
-
-    TextView tvBatteryWarning;
     BroadcastReceiver batteryChangeReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -28,6 +24,7 @@ public class BatterySampleFragment extends Fragment{
             handleBatteryStatus(intent);
         }
     };
+    TextView tvBatteryWarning;
 
     @Override
     public void onResume() {
@@ -53,7 +50,7 @@ public class BatterySampleFragment extends Fragment{
         View rootView = inflater.inflate(R.layout.fragment_battery_sample, container, false);
 
         //retrieve widgets
-        tvBatteryWarning = (TextView)rootView.findViewById(R.id.tv_batteryWarning);
+        tvBatteryWarning = (TextView) rootView.findViewById(R.id.tv_batteryWarning);
 
         //default values
         tvBatteryWarning.setVisibility(View.GONE);
@@ -70,7 +67,7 @@ public class BatterySampleFragment extends Fragment{
         // How much power?
         int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
         int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-        float batteryPct = level / (float)scale;
+        float batteryPct = level / (float) scale;
 
         if (!isCharging && batteryPct < 0.10f) {
             Log.d(BatterySampleFragment.TAG, "show warning");

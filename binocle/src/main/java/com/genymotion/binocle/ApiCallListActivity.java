@@ -2,8 +2,6 @@ package com.genymotion.binocle;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,11 +15,11 @@ import android.view.MenuItem;
  * lead to a {@link SampleActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
- * <p>
+ * <p/>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link ApiCallListFragment} and the item details
  * (if present) is a *SampleFragment.
- * <p>
+ * <p/>
  * This activity also implements the required
  * {@link ApiCallListFragment.Callbacks} interface
  * to listen for item selections.
@@ -29,13 +27,12 @@ import android.view.MenuItem;
 public class ApiCallListActivity extends ActionBarActivity
         implements ApiCallListFragment.Callbacks {
 
+    static String currentTag;
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
     private boolean mTwoPane;
-
-    static String currentTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
