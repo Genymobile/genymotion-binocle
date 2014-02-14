@@ -16,7 +16,7 @@ As all our sensors are already mocked inside Genymotion, we created a Java API a
 
 # How to use
 How to use the Genymotion Java Api in your instrumentedTest project:
-### add dependency
+### 1) Add dependency
 #### Maven
 ```
 <dependency>
@@ -33,14 +33,19 @@ instrumentTestCompile 'com.genymotion.api:genymotion-api:1.0.0'
 Simply add the jar file to your "libs" folder.
 [genymotion-api-1.0.0.jar](http://www.genymotion.com/download/com.genymotion.api/genymotion-api/1.0.0/genymotion-api-1.0.0.jar)
 
-### usage
+### 2) Usage
 Then inside your instrumented test, get a reference to Genymotion object using:
 ```
 Genymotion.getGenymotionManager(getInstrumentation().getContext())
 ```
-You will then be able to access all sensors from the GenymotionManager as described in our Javadoc: https://cloud.genymotion.com/static/external/javadoc/index.html
+You will then be able to access all sensors from the GenymotionManager. For exemple, the battery level:
+```
+genymotionManager.getBattery().setLevel(10);
+```
+You can find all available methods in the Javadoc:
+https://cloud.genymotion.com/static/external/javadoc/index.html
 
-### tips
+### 3) Tips
 Most of the time your app listen to sensor changes using listener, and it takes some times for the system to see that sensors values changed, broadcast the values to every app listening for them. This is how you can wait a period of time for all of this to happen:
 ```
 try {
