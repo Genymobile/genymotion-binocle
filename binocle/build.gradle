@@ -34,5 +34,5 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:+'
     compile 'com.android.support:support-v4:18.0.0'
-    compile 'com.genymotion.api:genymotion-api:0.9.0'
+    compileTest 'com.genymotion.api:genymotion-api:0.9.0'
 }

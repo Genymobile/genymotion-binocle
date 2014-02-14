@@ -27,7 +27,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class AndroidIdSampleFragment extends Fragment {
+public class IdSampleFragment extends Fragment {
     public static final String TAG = "AndroidId";
     public static final String SECRET_MESSAGE = "You win a free beer!";
     public static final String FILE_NAME = "encrypted_data";

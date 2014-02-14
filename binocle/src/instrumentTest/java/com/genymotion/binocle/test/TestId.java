@@ -6,18 +6,17 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TextView;
 
 import com.genymotion.api.GenymotionManager;
-import com.genymotion.binocle.AndroidIdSampleFragment;
+import com.genymotion.binocle.IdSampleFragment;
 import com.genymotion.binocle.R;
 import com.genymotion.binocle.SampleActivity;
 
 import junit.framework.Assert;
 
+public class TestId extends ActivityInstrumentationTestCase2<SampleActivity> {
 
-public class TestAndroidID extends ActivityInstrumentationTestCase2<SampleActivity> {
+    IdSampleFragment fragmentAndroidID;
 
-    AndroidIdSampleFragment fragmentAndroidID;
-
-    public TestAndroidID() {
+    public TestId() {
         super(SampleActivity.class);
     }
 
@@ -32,12 +31,12 @@ public class TestAndroidID extends ActivityInstrumentationTestCase2<SampleActivi
         //add parameter to allow activity to start and create fragment GpsSampleFragment.
         Intent androiIdIntent;
         androiIdIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
-        androiIdIntent.putExtra(SampleActivity.ARG_ITEM_ID, AndroidIdSampleFragment.TAG);
+        androiIdIntent.putExtra(SampleActivity.ARG_ITEM_ID, IdSampleFragment.TAG);
         setActivityIntent(androiIdIntent);
 
         //create activity and get fragment back
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        fragmentAndroidID = (AndroidIdSampleFragment) fragmentManager.findFragmentByTag(AndroidIdSampleFragment.TAG);
+        fragmentAndroidID = (IdSampleFragment) fragmentManager.findFragmentByTag(IdSampleFragment.TAG);
     }
 
     public void testAndroidId() {
