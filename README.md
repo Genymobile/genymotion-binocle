@@ -36,25 +36,28 @@ If using Maven:
     <groupId>com.genymotion.api</groupId>
     <artifactId>genymotion-api</artifactId>
     <version>1.0.0</version>
-    <scope>test</scope>
 </dependency>
 ```
 If using Gradle:
 ```
-compileTest 'com.genymotion.api:genymotion-api:1.0.0'
+instrumentTestCompile 'com.genymotion.api:genymotion-api:1.0.0'
 ```
 Without Maven nor Gradle:
 Simply add the jar file to your "libs" folder.
 http://www.genymotion.com/download/com.genymotion.api/genymotion-api/1.0.0/genymotion-api-1.0.0.jar
 
-Then inside your instrumented test get a reference to Genymotion object using:
+Then inside your instrumented test, get a reference to Genymotion object using:
 ```
-Genymotion.getGenymotionManager()
+Genymotion.getGenymotionManager(getInstrumentation().getContext())
 ```
 You will then be able to access all sensors from the GenymotionManager as described in our Javadoc: https://cloud.genymotion.com/static/external/javadoc/index.html
 Most of the time your app listen to sensor changes using listener, and it takes some times for the system to see that sensors values changed, broadcast the values to every app listening for them. This is how you can wait a period of time for all of this to happen:
 ```
-<TODO:WAIT SNIPPET>
+try {
+    Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
+} catch (InterruptedException ie) {
+}
+getInstrumentation().waitForIdleSync();
 ```
 If you want to ensure that your instrumented test is only executed inside Genymotion and not on a real device you can exit the test this way:
 ```

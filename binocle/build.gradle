@@ -15,7 +15,7 @@ repositories {
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '19.0.0'
+    buildToolsVersion '19.0.1'
 
     defaultConfig {
         minSdkVersion 9
@@ -34,5 +34,5 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:+'
     compile 'com.android.support:support-v4:18.0.0'
-    compileTest 'com.genymotion.api:genymotion-api:0.9.0'
+    instrumentTestCompile 'com.genymotion.api:genymotion-api:1.0.0'
 }

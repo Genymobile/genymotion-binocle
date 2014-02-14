@@ -35,8 +35,8 @@ public class SampleActivity extends ActionBarActivity {
                 fragment = new GpsSampleFragment();
             } else if (RadioSampleFragment.TAG.equals(tag)) {
                 fragment = new RadioSampleFragment();
-            } else if (AndroidIdSampleFragment.TAG.equals(tag)) {
-                fragment = new AndroidIdSampleFragment();
+            } else if (IdSampleFragment.TAG.equals(tag)) {
+                fragment = new IdSampleFragment();
             }
         }
 
