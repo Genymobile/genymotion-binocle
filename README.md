@@ -6,9 +6,9 @@ genymotion-binocle
 This is a simple app, but with instrumented tests demonstrating how to use Genymotion API to check reactions of your app on sensors changes.
 
 # Why an API
-Sometimes in your instrumented tests, you will want to test what happens in your app when sensors send back specific values.
-As Android cannot fake sensors values, you will have to modify your code to mock them and create proxy objects for them.
-This will add unwanted noise inside your project source code, making it less readable, and harder to maintain.
+Sometimes in your instrumented tests, you will want to test what happens in your app when sensors send back specific values.  
+As Android cannot fake sensors values, you will have to modify your code to mock them and create proxy objects for them.  
+This will add unwanted noise inside your project source code, making it less readable, and harder to maintain.  
 
 Genymotion API is there to help you on this!
 
@@ -64,23 +64,23 @@ if (!Genymotion.isGenymotionDevice()) {
 Here is some practical examples:
 
 ### Battery
-An app must display a warning if the device is not plugged to a power source and has got less than 10% power left.
-Here is the Fragment showing it: [BatterySampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/BatterySampleFragment.java)
+An app must display a warning if the device is not plugged to a power source and has got less than 10% power left.  
+Here is the Fragment showing it: [BatterySampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/BatterySampleFragment.java)  
 Here is an instrumentedTest testing for the behavior: [TestBattery.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestBattery.java)
 
 ### GPS
-An app must display a message if the device is localized near a specific place.
-Here is the Fragment showing it: [GpsSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/GpsSampleFragment.java)
+An app must display a message if the device is localized near a specific place.  
+Here is the Fragment showing it: [GpsSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/GpsSampleFragment.java)  
 Here is an instrumentedTest testing for the behavior:  [TestGps.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestGps.java)
 
 ### Radio
-An app must display a message if the device is a nexus 4 device, as recognized by its IMEI number.
-Here is the Fragment showing it: [RadioSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/RadioSampleFragment.java)
+An app must display a message if the device is a nexus 4 device, as recognized by its IMEI number.  
+Here is the Fragment showing it: [RadioSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/RadioSampleFragment.java)  
 Here is an instrumentedTest testing for the behavior:  [TestRadio.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestRadio.java)
 
 ### Id
-An app must encrypt data using ANDROID_ID to avoid the backup data to be moved on another Android device.
-Here is the Fragment showing it: [IdSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/IdSampleFragment.java)
+An app must encrypt data using ANDROID_ID to avoid the backup data to be moved on another Android device.  
+Here is the Fragment showing it: [IdSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/IdSampleFragment.java)  
 Here is an instrumentedTest testing for the behavior:  [TestId.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestId.java)
 
 
