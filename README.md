@@ -26,7 +26,7 @@ How to use the Genymotion Java Api in your instrumentedTest project:
 </dependency>
 ```
 #### Gradle
-```bash
+```groovy
 instrumentTestCompile 'com.genymotion.api:genymotion-api:1.0.0'
 ```
 #### Without Maven nor Gradle
