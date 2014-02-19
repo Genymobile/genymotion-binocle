@@ -28,13 +28,13 @@ public class TestId extends ActivityInstrumentationTestCase2<SampleActivity> {
         genymotion = GenymotionManager.getGenymotionManager(getInstrumentation().getContext());
         genymotion.getId().setAndroidId("ea7fc13784a3a5ea");
 
-        //add parameter to allow activity to start and create fragment GpsSampleFragment.
+        // Add parameter to allow activity to start and create fragment GpsSampleFragment.
         Intent androiIdIntent;
         androiIdIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
         androiIdIntent.putExtra(SampleActivity.ARG_ITEM_ID, IdSampleFragment.TAG);
         setActivityIntent(androiIdIntent);
 
-        //create activity and get fragment back
+        // Create activity and get fragment back
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         fragmentAndroidID = (IdSampleFragment) fragmentManager.findFragmentByTag(IdSampleFragment.TAG);
     }

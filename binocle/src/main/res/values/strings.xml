@@ -16,11 +16,16 @@
     <string name="gps_currentLng">Current longitude is %f</string>
     <string name="gps_distanceToDalvik">Dalvik is %d km away</string>
 
-
-    <!-- radio label -->
+    <!-- radio labels -->
     <string name="radio_device_type">Your device is recognized as a: %s</string>
 
-    <!-- android_id label -->
-    <string name="android_id">Secret file will be decoded if ANDROID_ID equals: %s</string>
+    <!-- id labels -->
+    <string name="android_id">Secret file can only be decoded on the device it has been created on. Current ANDROID_ID is %s.</string>
+    <string name="encode">Encrypt secret</string>
+    <string name="decode">Decrypt secret</string>
+    <string name="encoding_done">Secret have been encrypted on disk using ANDROID_ID.</string>
+    <string name="encoding_failed">An error occured when encrypting secret!</string>
+    <string name="decoding_done">Secret have been correctly decrypted from disk! secret message was:\n %s</string>
+    <string name="decoding_failed">An error occured when decrypting secret!</string>
 
 </resources>
