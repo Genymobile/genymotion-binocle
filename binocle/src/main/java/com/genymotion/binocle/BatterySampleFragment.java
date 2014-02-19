@@ -20,7 +20,7 @@ public class BatterySampleFragment extends Fragment {
     BroadcastReceiver batteryChangeReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(BatterySampleFragment.TAG, "battery value changed");
+            Log.d(BatterySampleFragment.TAG, "Battery value changed");
             handleBatteryStatus(intent);
         }
     };
@@ -31,14 +31,12 @@ public class BatterySampleFragment extends Fragment {
         super.onResume();
 
         //register battery listener
-        Log.d(BatterySampleFragment.TAG, "register");
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         getActivity().registerReceiver(batteryChangeReceiver, ifilter);
     }
 
     @Override
     public void onPause() {
-        Log.d(BatterySampleFragment.TAG, "unregister");
         getActivity().unregisterReceiver(batteryChangeReceiver);
 
         super.onPause();
@@ -62,7 +60,8 @@ public class BatterySampleFragment extends Fragment {
 
         // Are we charging / charged yet?
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL;
+        boolean isCharging = ( (status == BatteryManager.BATTERY_STATUS_CHARGING) 
+                || (status == BatteryManager.BATTERY_STATUS_FULL) );
 
         // How much power?
         int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
@@ -70,10 +69,10 @@ public class BatterySampleFragment extends Fragment {
         float batteryPct = level / (float) scale;
 
         if (!isCharging && batteryPct < 0.10f) {
-            Log.d(BatterySampleFragment.TAG, "show warning");
+            Log.d(BatterySampleFragment.TAG, "Show battery warning");
             tvBatteryWarning.setVisibility(View.VISIBLE);
         } else {
-            Log.d(BatterySampleFragment.TAG, "hide warning");
+            Log.d(BatterySampleFragment.TAG, "Hide battery warning");
             tvBatteryWarning.setVisibility(View.GONE);
         }
     }

@@ -102,11 +102,11 @@ public class GpsSampleFragment extends Fragment {
             tvGpsCurrentLng.setVisibility(View.VISIBLE);
             tvGpsDistanceToDalvik.setVisibility(View.VISIBLE);
 
-            if (distance < 100) {
-                Log.d(GpsSampleFragment.TAG, "show warning");
+            if (distance <= 100) {
+                Log.d(GpsSampleFragment.TAG, "Show location warning");
                 tvGpsWarning.setVisibility(View.VISIBLE);
             } else {
-                Log.d(GpsSampleFragment.TAG, "hide warning");
+                Log.d(GpsSampleFragment.TAG, "Hide location warning");
                 tvGpsWarning.setVisibility(View.GONE);
             }
 

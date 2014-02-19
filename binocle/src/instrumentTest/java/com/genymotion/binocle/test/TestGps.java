@@ -27,13 +27,13 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
     protected void setUp() throws Exception {
         super.setUp();
 
-        //add parameter to allow activity to start and create fragment GpsSampleFragment.
+        // Add parameter to allow activity to start and create fragment GpsSampleFragment.
         Intent gpsIntent;
         gpsIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
         gpsIntent.putExtra(SampleActivity.ARG_ITEM_ID, GpsSampleFragment.TAG);
         setActivityIntent(gpsIntent);
 
-        //create activity and get fragment back
+        // Create activity and get fragment back
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         fragmentGps = (GpsSampleFragment) fragmentManager.findFragmentByTag(GpsSampleFragment.TAG);
     }
@@ -41,18 +41,18 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
     public void testGpsWarning() {
 
         TextView tvWarning = (TextView) fragmentGps.getView().findViewById(R.id.tv_gpsWarning);
-        GenymotionManager genymo;
+        GenymotionManager genymotion;
         try {
-            genymo = GenymotionManager.getGenymotionManager(getActivity());
+            genymotion = GenymotionManager.getGenymotionManager(getActivity());
         } catch (NotGenymotionDeviceException ex) {
-            fail("test must be run on Genymotion device");
+            fail("Test must be run on Genymotion device");
             return;
         }
 
-        // position to reykjavik (257km away))
+        // Position to reykjavik (257km away))
         Log.d(GpsSampleFragment.TAG, "Force position to Reykjavik");
-        genymo.getGps().setLatitude(64.13367829);
-        genymo.getGps().setLongitude(-21.8964386);
+        genymotion.getGps().setLatitude(64.13367829);
+        genymotion.getGps().setLongitude(-21.8964386);
         try {
             Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
         } catch (InterruptedException ie) {
@@ -62,10 +62,10 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
         // Then ensure warning is hidden
         Assert.assertEquals(tvWarning.getVisibility(), View.GONE);
 
-        // position near Dalvik
+        // Position near Dalvik
         Log.d(GpsSampleFragment.TAG, "Force position near Dalvik");
-        genymo.getGps().setLatitude(65.9446);
-        genymo.getGps().setLongitude(-18.35744619);
+        genymotion.getGps().setLatitude(65.9446);
+        genymotion.getGps().setLongitude(-18.35744619);
         try {
             Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
         } catch (InterruptedException ie) {

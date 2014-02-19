@@ -25,18 +25,19 @@ public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> 
     protected void setUp() throws Exception {
         super.setUp();
 
-        //change IMEI before creating activity
-        GenymotionManager genymo;
-        genymo = GenymotionManager.getGenymotionManager(getInstrumentation().getContext());
-        genymo.getRadio().setDeviceId("353918050000000"); /* <- faking the Nexus 4. */
-
-        //add parameter to allow activity to start and create fragment GpsSampleFragment.
+        // Change IMEI before creating activity
+        GenymotionManager genymotion;
+        genymotion = GenymotionManager.getGenymotionManager(getInstrumentation().getContext());
+        // Faking a Google Nexus 4
+        genymotion.getRadio().setDeviceId("353918050000000"); 
+        
+        // Add parameter to allow activity to start and create fragment GpsSampleFragment.
         Intent radioIntent;
         radioIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
         radioIntent.putExtra(SampleActivity.ARG_ITEM_ID, RadioSampleFragment.TAG);
         setActivityIntent(radioIntent);
 
-        //create activity and get fragment back
+        // Create activity and get fragment back
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         fragmentRadio = (RadioSampleFragment) fragmentManager.findFragmentByTag(RadioSampleFragment.TAG);
     }

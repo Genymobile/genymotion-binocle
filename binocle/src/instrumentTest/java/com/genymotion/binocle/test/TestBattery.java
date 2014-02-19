@@ -28,13 +28,13 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
     protected void setUp() throws Exception {
         super.setUp();
 
-        //add parameter to allow activity to start and create fragment BatterySampleFragment.
+        // Add parameter to allow activity to start and create fragment BatterySampleFragment.
         Intent batteryIntent;
         batteryIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
         batteryIntent.putExtra(SampleActivity.ARG_ITEM_ID, BatterySampleFragment.TAG);
         setActivityIntent(batteryIntent);
 
-        //create activity and get fragment back
+        // Create activity and get fragment back
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         fragmentBattery = (BatterySampleFragment) fragmentManager.findFragmentByTag(BatterySampleFragment.TAG);
     }
@@ -46,7 +46,7 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
         try {
             genymo = GenymotionManager.getGenymotionManager(getActivity());
         } catch (NotGenymotionDeviceException ex) {
-            fail("test must be run on Genymotion device");
+            fail("Test must be run on Genymotion device");
             return;
         }
 
