@@ -76,6 +76,9 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
 
         // Then ensure warning is visible
         Assert.assertEquals(tvWarning.getVisibility(), View.VISIBLE);
+
+       // set battery mode back to HOST
+       genymo.getBattery().setMode(Battery.Mode.HOST);
     }
 
 }
