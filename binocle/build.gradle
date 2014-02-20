@@ -1,6 +1,9 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven{
+            url "http://api.genymotion.com/repositories/releases/"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.7.+'
