@@ -46,11 +46,11 @@ public class TestId extends ActivityInstrumentationTestCase2<SampleActivity> {
 
         GenymotionManager genymotion;
         genymotion = GenymotionManager.getGenymotionManager(getInstrumentation().getContext());
-        
+
         // Encoding with android id = deadbeefdeadbeef
         genymotion.getId().setAndroidId("deadbeefdeadbeef");
         btnEncode.performClick();
-        
+
         // Decoding with android id = deadbeefdeadbeef
         btnDecode.performClick();
 

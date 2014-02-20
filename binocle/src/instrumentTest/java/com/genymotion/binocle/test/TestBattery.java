@@ -56,7 +56,7 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
         genymo.getBattery().setLevel(100);
         genymo.getBattery().setStatus(Battery.Status.CHARGING);
         try {
-            Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
+            Thread.sleep(5000); //Android needs time to poll sensors and broadcast event.
         } catch (InterruptedException ie) {
         }
         getInstrumentation().waitForIdleSync();
@@ -69,7 +69,7 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
         genymo.getBattery().setLevel(3);
         genymo.getBattery().setStatus(Battery.Status.DISCHARGING);
         try {
-            Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
+            Thread.sleep(5000); //Android needs time to poll sensors and broadcast event.
         } catch (InterruptedException ie) {
         }
         getInstrumentation().waitForIdleSync();

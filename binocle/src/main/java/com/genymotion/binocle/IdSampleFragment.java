@@ -29,14 +29,13 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class IdSampleFragment extends Fragment implements View.OnClickListener{
     public static final String TAG = "Id";
-    
+
     public static final String SECRET_MESSAGE = "Genymotion ♥ developpers!";
     public static final String FILE_NAME = "encrypted_data";
     private final Charset UTF8_CHARSET = Charset.forName("UTF-8");
 
-
     TextView tvAndroidId;
-    
+
     private byte[] salt = {
             (byte) 0xde, (byte) 0xad, (byte) 0xbe, (byte) 0xef,
             (byte) 0xba, (byte) 0xad, (byte) 0xca, (byte) 0xfe
@@ -65,7 +64,7 @@ public class IdSampleFragment extends Fragment implements View.OnClickListener{
             doDecode();
         }
     }
-    
+
     public void doEncode() {
         try {
             // Set up secret key spec for 128-bit AES encryption
@@ -90,9 +89,9 @@ public class IdSampleFragment extends Fragment implements View.OnClickListener{
             cos.flush();
             cos.close();
             fos.close();
-            
+
             tvAndroidId.setText(getActivity().getResources().getString(R.string.encoding_done, androidId));
-            
+
         } catch (NoSuchPaddingException
                 |NoSuchAlgorithmException
                 |IOException
@@ -104,7 +103,6 @@ public class IdSampleFragment extends Fragment implements View.OnClickListener{
     }
     
     public void doDecode(){
-        
         try {
             // Set up secret key spec for 128-bit AES decryption
             String androidId = Secure.getString(getActivity().getContentResolver(), Secure.ANDROID_ID);

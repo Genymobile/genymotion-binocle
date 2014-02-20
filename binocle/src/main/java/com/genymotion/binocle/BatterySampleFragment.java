@@ -60,7 +60,7 @@ public class BatterySampleFragment extends Fragment {
 
         // Are we charging / charged yet?
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-        boolean isCharging = ( (status == BatteryManager.BATTERY_STATUS_CHARGING) 
+        boolean isCharging = ( (status == BatteryManager.BATTERY_STATUS_CHARGING)
                 || (status == BatteryManager.BATTERY_STATUS_FULL) );
 
         // How much power?

@@ -54,7 +54,7 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
         genymotion.getGps().setLatitude(64.13367829);
         genymotion.getGps().setLongitude(-21.8964386);
         try {
-            Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
+            Thread.sleep(5000); //Android needs time to poll sensors and broadcast event.
         } catch (InterruptedException ie) {
         }
         getInstrumentation().waitForIdleSync();
@@ -67,7 +67,7 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
         genymotion.getGps().setLatitude(65.9446);
         genymotion.getGps().setLongitude(-18.35744619);
         try {
-            Thread.sleep(5000); //Android need time to poll sensors and broadcast event.
+            Thread.sleep(5000); //Android needs time to poll sensors and broadcast event.
         } catch (InterruptedException ie) {
         }
         getInstrumentation().waitForIdleSync();

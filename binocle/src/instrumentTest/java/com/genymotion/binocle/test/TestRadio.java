@@ -29,8 +29,8 @@ public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> 
         GenymotionManager genymotion;
         genymotion = GenymotionManager.getGenymotionManager(getInstrumentation().getContext());
         // Faking a Google Nexus 4
-        genymotion.getRadio().setDeviceId("353918050000000"); 
-        
+        genymotion.getRadio().setDeviceId("353918050000000");
+
         // Add parameter to allow activity to start and create fragment GpsSampleFragment.
         Intent radioIntent;
         radioIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
@@ -44,7 +44,7 @@ public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> 
 
     public void testDeviceId() {
         try {
-            Thread.sleep(2000); //Android need time to poll sensors and broadcast event.
+            Thread.sleep(2000); //Android needs time to poll sensors and broadcast event.
         } catch (InterruptedException ie) {
         }
 
@@ -54,6 +54,5 @@ public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> 
         text = tvDeviceType.getText().toString();
 
         Assert.assertTrue(text.endsWith("Nexus 4"));
-
     }
 }
