@@ -30,7 +30,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class IdSampleFragment extends Fragment implements View.OnClickListener{
     public static final String TAG = "Id";
     
-    public static final String SECRET_MESSAGE = "Genymotion ♥ you!";
+    public static final String SECRET_MESSAGE = "Genymotion ♥ developpers!";
     public static final String FILE_NAME = "encrypted_data";
     private final Charset UTF8_CHARSET = Charset.forName("UTF-8");
 
