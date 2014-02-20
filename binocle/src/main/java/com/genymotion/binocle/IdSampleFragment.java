@@ -12,10 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -32,29 +30,29 @@ import javax.crypto.spec.SecretKeySpec;
 public class IdSampleFragment extends Fragment implements View.OnClickListener{
     public static final String TAG = "Id";
     
-    public static final String SECRET_MESSAGE = "Genymotion <3 you!";//todo <3
+    public static final String SECRET_MESSAGE = "Genymotion ♥ you!";
     public static final String FILE_NAME = "encrypted_data";
-    
+    private final Charset UTF8_CHARSET = Charset.forName("UTF-8");
+
+
     TextView tvAndroidId;
     
     private byte[] salt = {
             (byte) 0xde, (byte) 0xad, (byte) 0xbe, (byte) 0xef,
-            (byte) 0xde, (byte) 0xad, (byte) 0xbe, (byte) 0xef
+            (byte) 0xba, (byte) 0xad, (byte) 0xca, (byte) 0xfe
     };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_id_sample, container, false);
 
-        if (rootView != null) {
-            tvAndroidId = (TextView) rootView.findViewById(R.id.tv_androidId);
-            String androidId = Secure.getString(getActivity().getContentResolver(), Secure.ANDROID_ID);
-            tvAndroidId.setText(getActivity().getResources().getString(R.string.android_id, androidId));
-            View btnEncode = rootView.findViewById(R.id.btn_encode);
-            btnEncode.setOnClickListener(this);
-            View btnDecode = rootView.findViewById(R.id.btn_decode);
-            btnDecode.setOnClickListener(this);
-        }
+        tvAndroidId = (TextView) rootView.findViewById(R.id.tv_androidId);
+        String androidId = Secure.getString(getActivity().getContentResolver(), Secure.ANDROID_ID);
+        tvAndroidId.setText(getActivity().getResources().getString(R.string.android_id, androidId));
+        View btnEncode = rootView.findViewById(R.id.btn_encode);
+        btnEncode.setOnClickListener(this);
+        View btnDecode = rootView.findViewById(R.id.btn_decode);
+        btnDecode.setOnClickListener(this);
 
         return rootView;
     }
@@ -86,31 +84,20 @@ public class IdSampleFragment extends Fragment implements View.OnClickListener{
             CipherOutputStream cos = new CipherOutputStream(fos, cipher);
 
             // Write bytes
-            cos.write(SECRET_MESSAGE.getBytes("UTF-8"));
+            cos.write(SECRET_MESSAGE.getBytes(UTF8_CHARSET));
 
             // Flush and close streams.
             cos.flush();
             cos.close();
             fos.close();
             
-            tvAndroidId.setText(R.string.encoding_done);
+            tvAndroidId.setText(getActivity().getResources().getString(R.string.encoding_done, androidId));
             
-        } catch (NoSuchPaddingException e) {
-            Log.e(TAG, "Unable to encrypt secret", e);
-            tvAndroidId.setText(R.string.encoding_failed);
-        } catch (NoSuchAlgorithmException e) {
-            Log.e(TAG, "Unable to encrypt secret", e);
-            tvAndroidId.setText(R.string.encoding_failed);
-        } catch (FileNotFoundException e) {
-            Log.e(TAG, "Unable to encrypt secret", e);
-            tvAndroidId.setText(R.string.encoding_failed);
-        } catch (IOException e) {
-            Log.e(TAG, "Unable to encrypt secret", e);
-            tvAndroidId.setText(R.string.encoding_failed);
-        } catch (InvalidKeyException e) {
-            Log.e(TAG, "Unable to encrypt secret", e);
-            tvAndroidId.setText(R.string.encoding_failed);
-        } catch (InvalidKeySpecException e) {
+        } catch (NoSuchPaddingException
+                |NoSuchAlgorithmException
+                |IOException
+                |InvalidKeyException
+                |InvalidKeySpecException e) {
             Log.e(TAG, "Unable to encrypt secret", e);
             tvAndroidId.setText(R.string.encoding_failed);
         }
@@ -136,28 +123,24 @@ public class IdSampleFragment extends Fragment implements View.OnClickListener{
             CipherInputStream cis = new CipherInputStream(fis, cipher);
 
             // Read and decrypt file
-            byte[] message = new byte[SECRET_MESSAGE.length()];
-            if (cis.read(message) > 0) {
-                String secret = new String(message); //TODO utf8?
-                String label = getActivity().getResources().getString(R.string.decoding_done, secret);
-                tvAndroidId.setText(label);
-            }
-        } catch (NoSuchPaddingException e) {
-            Log.e(TAG, "Unable to decrypt secret", e);
-            tvAndroidId.setText(R.string.decoding_failed);
-        } catch (NoSuchAlgorithmException e) {
-            Log.e(TAG, "Unable to decrypt secret", e);
-            tvAndroidId.setText(R.string.decoding_failed);
-        } catch (FileNotFoundException e) {
-            Log.e(TAG, "Unable to decrypt secret", e);
-            tvAndroidId.setText(R.string.decoding_failed);
-        } catch (IOException e) {
-            Log.e(TAG, "Unable to decrypt secret", e);
-            tvAndroidId.setText(R.string.decoding_failed);
-        } catch (InvalidKeyException e) {
-            Log.e(TAG, "Unable to decrypt secret", e);
-            tvAndroidId.setText(R.string.decoding_failed);
-        } catch (InvalidKeySpecException e) {
+            int size = SECRET_MESSAGE.getBytes(UTF8_CHARSET).length;
+            byte[] message = new byte[size];
+            int pos = 0;
+            int read;
+            do {
+                read = cis.read(message, pos, size);
+                pos += read;
+                size -= read;
+            } while (read > 0);
+            String secret = new String(message, UTF8_CHARSET);
+            String label = getActivity().getResources().getString(R.string.decoding_done, secret);
+            tvAndroidId.setText(label);
+            
+        } catch (NoSuchPaddingException
+        | NoSuchAlgorithmException
+        | IOException
+        | InvalidKeyException
+        | InvalidKeySpecException e) {
             Log.e(TAG, "Unable to decrypt secret", e);
             tvAndroidId.setText(R.string.decoding_failed);
         }

@@ -21,8 +21,6 @@ public class SampleActivity extends ActionBarActivity {
 
     public static final String ARG_ITEM_ID = "item_id";
 
-    static String currentTag;
-
     public static void createAndReplaceFragment(String tag, FragmentManager fm) {
 
         Fragment fragment = fm.findFragmentByTag(tag);
@@ -41,19 +39,11 @@ public class SampleActivity extends ActionBarActivity {
         }
 
         if (fragment != null) {
-            // If it is the current fragment, update it
-            if (tag.equals(currentTag)) {
-                fragment.onStart();//TODO WTF?
-            } else {
-                // Replace current fragment by new one
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.apicall_detail_container, fragment, tag);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.commit();
-                currentTag = tag;
-            }
-        } else {
-            currentTag = null;
+            // Replace current fragment by new one
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.apicall_detail_container, fragment, tag);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
         }
     }
 
@@ -103,10 +93,8 @@ public class SampleActivity extends ActionBarActivity {
             NavUtils.navigateUpTo(this, new Intent(this, ApiCallListActivity.class));
             return true;
         } else if (id == R.id.menu_refresh) {
-            if (currentTag != null) {
-                createAndReplaceFragment(currentTag, getSupportFragmentManager());
-                //Todo marche pas sur un phone...
-            }
+            String tag = getIntent().getStringExtra(ARG_ITEM_ID);
+            createAndReplaceFragment(tag, getSupportFragmentManager());
         }
         return super.onOptionsItemSelected(item);
     }

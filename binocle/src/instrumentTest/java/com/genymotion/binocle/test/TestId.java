@@ -3,6 +3,9 @@ package com.genymotion.binocle.test;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.TouchUtils;
+import android.test.UiThreadTest;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.genymotion.api.GenymotionManager;
@@ -24,10 +27,6 @@ public class TestId extends ActivityInstrumentationTestCase2<SampleActivity> {
     protected void setUp() throws Exception {
         super.setUp();
 
-        GenymotionManager genymotion;
-        genymotion = GenymotionManager.getGenymotionManager(getInstrumentation().getContext());
-        genymotion.getId().setAndroidId("ea7fc13784a3a5ea");
-
         // Add parameter to allow activity to start and create fragment GpsSampleFragment.
         Intent androiIdIntent;
         androiIdIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
@@ -39,14 +38,32 @@ public class TestId extends ActivityInstrumentationTestCase2<SampleActivity> {
         fragmentAndroidID = (IdSampleFragment) fragmentManager.findFragmentByTag(IdSampleFragment.TAG);
     }
 
+    @UiThreadTest
     public void testAndroidId() {
-        try {
-            Thread.sleep(2000); //Android need time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {
-        }
-
         TextView tvAndroidId = (TextView) fragmentAndroidID.getView().findViewById(R.id.tv_androidId);
+        Button btnEncode = (Button) fragmentAndroidID.getView().findViewById(R.id.btn_encode);
+        Button btnDecode = (Button) fragmentAndroidID.getView().findViewById(R.id.btn_decode);
+
+        GenymotionManager genymotion;
+        genymotion = GenymotionManager.getGenymotionManager(getInstrumentation().getContext());
+        
+        // Encoding with android id = deadbeefdeadbeef
+        genymotion.getId().setAndroidId("deadbeefdeadbeef");
+        btnEncode.performClick();
+        
+        // Decoding with android id = deadbeefdeadbeef
+        btnDecode.performClick();
+
+        // Must have been correctly decoded
         String text = tvAndroidId.getText().toString();
         Assert.assertTrue(text.endsWith(fragmentAndroidID.SECRET_MESSAGE));
+
+        // Decoding with android id = 1234567812345678
+        genymotion.getId().setAndroidId("baadcafebaadcafe");
+        btnDecode.performClick();
+
+        // Must NOT been correctly decoded
+        text = tvAndroidId.getText().toString();
+        Assert.assertFalse(text.endsWith(fragmentAndroidID.SECRET_MESSAGE));
     }
 }
