@@ -58,7 +58,7 @@ public class TestId extends ActivityInstrumentationTestCase2<SampleActivity> {
         String text = tvAndroidId.getText().toString();
         Assert.assertTrue(text.endsWith(fragmentAndroidID.SECRET_MESSAGE));
 
-        // Decoding with android id = 1234567812345678
+        // Decoding with android id = baadcafebaadcafe
         genymotion.getId().setAndroidId("baadcafebaadcafe");
         btnDecode.performClick();
 
