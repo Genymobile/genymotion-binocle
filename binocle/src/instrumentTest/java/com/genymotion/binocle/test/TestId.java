@@ -28,10 +28,10 @@ public class TestId extends ActivityInstrumentationTestCase2<SampleActivity> {
         super.setUp();
 
         // Add parameter to allow activity to start and create fragment GpsSampleFragment.
-        Intent androiIdIntent;
-        androiIdIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
-        androiIdIntent.putExtra(SampleActivity.ARG_ITEM_ID, IdSampleFragment.TAG);
-        setActivityIntent(androiIdIntent);
+        Intent androidIdIntent;
+        androidIdIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
+        androidIdIntent.putExtra(SampleActivity.ARG_ITEM_ID, IdSampleFragment.TAG);
+        setActivityIntent(androidIdIntent);
 
         // Create activity and get fragment back
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -60,6 +60,9 @@ public class TestId extends ActivityInstrumentationTestCase2<SampleActivity> {
 
         // Decoding with android id = baadcafebaadcafe
         genymotion.getId().setAndroidId("baadcafebaadcafe");
+        try {
+            Thread.sleep(1000); //Android needs time to poll sensors and broadcast event.
+        } catch (InterruptedException ie) {}
         btnDecode.performClick();
 
         // Must NOT been correctly decoded

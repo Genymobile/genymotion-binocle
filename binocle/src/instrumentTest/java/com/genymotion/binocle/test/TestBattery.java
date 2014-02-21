@@ -42,9 +42,9 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
     public void testBatteryWarning() {
 
         TextView tvWarning = (TextView) fragmentBattery.getView().findViewById(R.id.tv_batteryWarning);
-        GenymotionManager genymo;
+        GenymotionManager genymotion;
         try {
-            genymo = GenymotionManager.getGenymotionManager(getActivity());
+            genymotion = GenymotionManager.getGenymotionManager(getActivity());
         } catch (NotGenymotionDeviceException ex) {
             fail("Test must be run on Genymotion device");
             return;
@@ -52,9 +52,9 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
 
         // Change battery level and charging status
         Log.d(BatterySampleFragment.TAG, "Force full battery + charging");
-        genymo.getBattery().setMode(Battery.Mode.MANUAL);
-        genymo.getBattery().setLevel(100);
-        genymo.getBattery().setStatus(Battery.Status.CHARGING);
+        genymotion.getBattery().setMode(Battery.Mode.MANUAL);
+        genymotion.getBattery().setLevel(100);
+        genymotion.getBattery().setStatus(Battery.Status.CHARGING);
         try {
             Thread.sleep(5000); //Android needs time to poll sensors and broadcast event.
         } catch (InterruptedException ie) {
@@ -66,8 +66,8 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
 
         // Change battery level and charging status
         Log.d(BatterySampleFragment.TAG, "Force low battery");
-        genymo.getBattery().setLevel(3);
-        genymo.getBattery().setStatus(Battery.Status.DISCHARGING);
+        genymotion.getBattery().setLevel(3);
+        genymotion.getBattery().setStatus(Battery.Status.DISCHARGING);
         try {
             Thread.sleep(5000); //Android needs time to poll sensors and broadcast event.
         } catch (InterruptedException ie) {
@@ -78,7 +78,7 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
         Assert.assertEquals(tvWarning.getVisibility(), View.VISIBLE);
 
        // set battery mode back to HOST
-       genymo.getBattery().setMode(Battery.Mode.HOST);
+       genymotion.getBattery().setMode(Battery.Mode.HOST);
     }
 
 }
