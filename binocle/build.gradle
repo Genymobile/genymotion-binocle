@@ -1,18 +1,17 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven{
-            url "http://api.genymotion.com/repositories/releases/"
-        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.7.+'
+        classpath 'com.android.tools.build:gradle:0.9.0'
     }
 }
 apply plugin: 'android'
 
 repositories {
-    mavenLocal()
+    maven{
+        url "http://api.genymotion.com/repositories/releases/"
+    }
     mavenCentral()
 }
 
@@ -41,5 +40,5 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:+'
     compile 'com.android.support:support-v4:+'
-    instrumentTestCompile 'com.genymotion.api:genymotion-api:1.0.0'
+    androidTestCompile 'com.genymotion.api:genymotion-api:1.0.0'
 }
