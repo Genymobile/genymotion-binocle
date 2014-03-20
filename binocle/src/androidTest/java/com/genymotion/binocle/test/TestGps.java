@@ -1,5 +1,6 @@
 package com.genymotion.binocle.test;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.test.ActivityInstrumentationTestCase2;
@@ -42,8 +43,9 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
 
         TextView tvWarning = (TextView) fragmentGps.getView().findViewById(R.id.tv_gpsWarning);
         GenymotionManager genymotion;
+        Context ctx = getActivity();
         try {
-            genymotion = GenymotionManager.getGenymotionManager(getActivity());
+            genymotion = GenymotionManager.getGenymotionManager(ctx);
         } catch (NotGenymotionDeviceException ex) {
             fail("Test must be run on Genymotion device");
             return;
@@ -51,12 +53,10 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
 
         // Position to reykjavik (257km away))
         Log.d(GpsSampleFragment.TAG, "Force position to Reykjavik");
-        genymotion.getGps().setLatitude(64.13367829);
-        genymotion.getGps().setLongitude(-21.8964386);
-        try {
-            Thread.sleep(5000); //Android needs time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {
-        }
+        genymotion.getGps()
+                .setLatitude(64.13367829)
+                .setLongitude(-21.8964386);
+        // Allow UI to refresh
         getInstrumentation().waitForIdleSync();
 
         // Then ensure warning is hidden
@@ -64,12 +64,10 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
 
         // Position near Dalvik
         Log.d(GpsSampleFragment.TAG, "Force position near Dalvik");
-        genymotion.getGps().setLatitude(65.9446);
-        genymotion.getGps().setLongitude(-18.35744619);
-        try {
-            Thread.sleep(5000); //Android needs time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {
-        }
+        genymotion.getGps()
+                .setLatitude(65.9446)
+                .setLongitude(-18.35744619);
+        // Allow UI to refresh
         getInstrumentation().waitForIdleSync();
 
         // Ensure warning is shown
