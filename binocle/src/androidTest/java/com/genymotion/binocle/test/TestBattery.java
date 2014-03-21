@@ -52,13 +52,10 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
 
         // Change battery level and charging status
         Log.d(BatterySampleFragment.TAG, "Force full battery + charging");
-        genymotion.getBattery().setMode(Battery.Mode.MANUAL);
-        genymotion.getBattery().setLevel(100);
-        genymotion.getBattery().setStatus(Battery.Status.CHARGING);
-        try {
-            Thread.sleep(5000); //Android needs time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {
-        }
+        genymotion.getBattery()
+                .setMode(Battery.Mode.MANUAL)
+                .setLevel(100)
+                .setStatus(Battery.Status.CHARGING);
         getInstrumentation().waitForIdleSync();
 
         // Ensure warning is hidden
@@ -68,10 +65,6 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
         Log.d(BatterySampleFragment.TAG, "Force low battery");
         genymotion.getBattery().setLevel(3);
         genymotion.getBattery().setStatus(Battery.Status.DISCHARGING);
-        try {
-            Thread.sleep(5000); //Android needs time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {
-        }
         getInstrumentation().waitForIdleSync();
 
         // Then ensure warning is visible
