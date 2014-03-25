@@ -63,15 +63,16 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
 
         // Change battery level and charging status
         Log.d(BatterySampleFragment.TAG, "Force low battery");
-        genymotion.getBattery().setLevel(3);
-        genymotion.getBattery().setStatus(Battery.Status.DISCHARGING);
+        genymotion.getBattery()
+                .setLevel(3)
+                .setStatus(Battery.Status.DISCHARGING);
         getInstrumentation().waitForIdleSync();
 
         // Then ensure warning is visible
         Assert.assertEquals(tvWarning.getVisibility(), View.VISIBLE);
 
-       // set battery mode back to HOST
-       genymotion.getBattery().setMode(Battery.Mode.HOST);
+        // set battery mode back to HOST
+        genymotion.getBattery().setMode(Battery.Mode.HOST);
     }
 
 }
