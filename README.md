@@ -5,7 +5,7 @@ genymotion-binocle
 
 This is a simple app with android tests demonstrating how to use Genymotion API to check behavior of your app on sensors changes.
 
-[Genymotion Java Api documentation](https://cloud.genymotion.com/page/api/)
+[Genymotion Java Api documentation](https://cloud.genymotion.com/page/api/)    
 [Genymotion Java Api Javadoc](https://cloud.genymotion.com/static/external/javadoc/index.html)
 
 ### Battery
