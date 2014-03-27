@@ -25,9 +25,14 @@ public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> 
     protected void setUp() throws Exception {
         super.setUp();
 
-        // Change IMEI before creating activity
+        if (!GenymotionManager.isGenymotionDevice()) {
+            // Avoid test on non Genymotion devices.
+            return;
+        }
+
+        // Change IMEI before creating activity as the imei is read inside onStart()
         GenymotionManager genymotion;
-        genymotion = GenymotionManager.getGenymotionManager(getInstrumentation().getContext());
+        genymotion = GenymotionManager.getGenymotionManager(getInstrumentation().getTargetContext());
         // Faking a Google Nexus 4
         genymotion.getRadio().setDeviceId("353918050000000");
 
@@ -43,16 +48,14 @@ public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> 
     }
 
     public void testDeviceId() {
-        try {
-            Thread.sleep(2000); //Android needs time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {
+        
+        if (!GenymotionManager.isGenymotionDevice()) {
+            // Avoid test on non Genymotion devices.
+            return;
         }
 
         TextView tvDeviceType = (TextView) fragmentRadio.getView().findViewById(R.id.tv_radioDeviceType);
-
-        String text;
-        text = tvDeviceType.getText().toString();
-
+        String text = tvDeviceType.getText().toString();
         Assert.assertTrue(text.endsWith("Nexus 4"));
     }
 }

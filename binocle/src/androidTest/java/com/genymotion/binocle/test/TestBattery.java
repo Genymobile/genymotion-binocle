@@ -41,24 +41,20 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
 
     public void testBatteryWarning() {
 
-        TextView tvWarning = (TextView) fragmentBattery.getView().findViewById(R.id.tv_batteryWarning);
-        GenymotionManager genymotion;
-        try {
-            genymotion = GenymotionManager.getGenymotionManager(getActivity());
-        } catch (NotGenymotionDeviceException ex) {
-            fail("Test must be run on Genymotion device");
+        if (!GenymotionManager.isGenymotionDevice()) {
+            // Avoid test on non Genymotion devices.
             return;
         }
 
+        TextView tvWarning = (TextView) fragmentBattery.getView().findViewById(R.id.tv_batteryWarning);
+        GenymotionManager genymotion = GenymotionManager.getGenymotionManager(getActivity());
+        
         // Change battery level and charging status
         Log.d(BatterySampleFragment.TAG, "Force full battery + charging");
         genymotion.getBattery()
-                .setMode(Battery.Mode.MANUAL)
                 .setLevel(100)
                 .setStatus(Battery.Status.CHARGING);
-        getInstrumentation().waitForIdleSync();
-
-        // Ensure warning is hidden
+        // Then ensure warning is hidden
         Assert.assertEquals(tvWarning.getVisibility(), View.GONE);
 
         // Change battery level and charging status
@@ -66,8 +62,6 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
         genymotion.getBattery()
                 .setLevel(3)
                 .setStatus(Battery.Status.DISCHARGING);
-        getInstrumentation().waitForIdleSync();
-
         // Then ensure warning is visible
         Assert.assertEquals(tvWarning.getVisibility(), View.VISIBLE);
 

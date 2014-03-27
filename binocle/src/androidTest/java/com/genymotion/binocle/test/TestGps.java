@@ -40,39 +40,31 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
     }
 
     public void testGpsWarning() {
-
-        TextView tvWarning = (TextView) fragmentGps.getView().findViewById(R.id.tv_gpsWarning);
-        GenymotionManager genymotion;
-        Context ctx = getActivity();
-        try {
-            genymotion = GenymotionManager.getGenymotionManager(ctx);
-        } catch (NotGenymotionDeviceException ex) {
-            fail("Test must be run on Genymotion device");
+        
+        if (!GenymotionManager.isGenymotionDevice()) {
+            // Avoid test on non Genymotion devices.
             return;
         }
+
+        TextView tvWarning = (TextView) fragmentGps.getView().findViewById(R.id.tv_gpsWarning);
+        Context ctx = getActivity();
+        GenymotionManager genymotion = GenymotionManager.getGenymotionManager(ctx);
 
         // Position to reykjavik (257km away))
         Log.d(GpsSampleFragment.TAG, "Force position to Reykjavik");
         genymotion.getGps()
-                .setLatitude(64.13367829)
-                .setLongitude(-21.8964386);
-        // Allow UI to refresh
-        getInstrumentation().waitForIdleSync();
-
+            .setLatitude(64.13367829)
+            .setLongitude(-21.8964386);
         // Then ensure warning is hidden
         Assert.assertEquals(tvWarning.getVisibility(), View.GONE);
-
+        
         // Position near Dalvik
         Log.d(GpsSampleFragment.TAG, "Force position near Dalvik");
         genymotion.getGps()
                 .setLatitude(65.9446)
                 .setLongitude(-18.35744619);
-        // Allow UI to refresh
-        getInstrumentation().waitForIdleSync();
-
+        
         // Ensure warning is shown
         Assert.assertEquals(tvWarning.getVisibility(), View.VISIBLE);
-
     }
-
 }

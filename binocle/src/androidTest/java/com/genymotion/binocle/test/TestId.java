@@ -3,7 +3,6 @@ package com.genymotion.binocle.test;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.TouchUtils;
 import android.test.UiThreadTest;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,12 +39,18 @@ public class TestId extends ActivityInstrumentationTestCase2<SampleActivity> {
 
     @UiThreadTest
     public void testAndroidId() {
+        
+        if (!GenymotionManager.isGenymotionDevice()) {
+            // Avoid test on non Genymotion devices.
+            return;
+        }
+        
         TextView tvAndroidId = (TextView) fragmentAndroidID.getView().findViewById(R.id.tv_androidId);
         Button btnEncode = (Button) fragmentAndroidID.getView().findViewById(R.id.btn_encode);
         Button btnDecode = (Button) fragmentAndroidID.getView().findViewById(R.id.btn_decode);
 
         GenymotionManager genymotion;
-        genymotion = GenymotionManager.getGenymotionManager(getInstrumentation().getContext());
+        genymotion = GenymotionManager.getGenymotionManager(getInstrumentation().getTargetContext());
 
         // Encoding with android id = deadbeefdeadbeef
         genymotion.getId().setAndroidId("deadbeefdeadbeef");
