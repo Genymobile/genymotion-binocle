@@ -48,7 +48,7 @@ public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> 
     }
 
     public void testDeviceId() {
-        
+
         if (!GenymotionManager.isGenymotionDevice()) {
             // Avoid test on non Genymotion devices.
             return;

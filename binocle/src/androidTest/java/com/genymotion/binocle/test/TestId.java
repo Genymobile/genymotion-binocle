@@ -39,12 +39,12 @@ public class TestId extends ActivityInstrumentationTestCase2<SampleActivity> {
 
     @UiThreadTest
     public void testAndroidId() {
-        
+
         if (!GenymotionManager.isGenymotionDevice()) {
             // Avoid test on non Genymotion devices.
             return;
         }
-        
+
         TextView tvAndroidId = (TextView) fragmentAndroidID.getView().findViewById(R.id.tv_androidId);
         Button btnEncode = (Button) fragmentAndroidID.getView().findViewById(R.id.btn_encode);
         Button btnDecode = (Button) fragmentAndroidID.getView().findViewById(R.id.btn_decode);

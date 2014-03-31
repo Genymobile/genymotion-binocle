@@ -40,7 +40,7 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
     }
 
     public void testGpsWarning() {
-        
+
         if (!GenymotionManager.isGenymotionDevice()) {
             // Avoid test on non Genymotion devices.
             return;
@@ -57,13 +57,13 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
             .setLongitude(-21.8964386);
         // Then ensure warning is hidden
         Assert.assertEquals(tvWarning.getVisibility(), View.GONE);
-        
+
         // Position near Dalvik
         Log.d(GpsSampleFragment.TAG, "Force position near Dalvik");
         genymotion.getGps()
                 .setLatitude(65.9446)
                 .setLongitude(-18.35744619);
-        
+
         // Ensure warning is shown
         Assert.assertEquals(tvWarning.getVisibility(), View.VISIBLE);
     }

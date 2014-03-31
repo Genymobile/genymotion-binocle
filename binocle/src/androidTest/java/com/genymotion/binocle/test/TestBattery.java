@@ -48,7 +48,7 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
 
         TextView tvWarning = (TextView) fragmentBattery.getView().findViewById(R.id.tv_batteryWarning);
         GenymotionManager genymotion = GenymotionManager.getGenymotionManager(getActivity());
-        
+
         // Change battery level and charging status
         Log.d(BatterySampleFragment.TAG, "Force full battery + charging");
         genymotion.getBattery()

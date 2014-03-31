@@ -101,7 +101,7 @@ public class IdSampleFragment extends Fragment implements View.OnClickListener{
             tvAndroidId.setText(R.string.encoding_failed);
         }
     }
-    
+
     public void doDecode(){
         try {
             // Set up secret key spec for 128-bit AES decryption
@@ -133,7 +133,7 @@ public class IdSampleFragment extends Fragment implements View.OnClickListener{
             String secret = new String(message, UTF8_CHARSET);
             String label = getActivity().getResources().getString(R.string.decoding_done, secret);
             tvAndroidId.setText(label);
-            
+
         } catch (NoSuchPaddingException
         | NoSuchAlgorithmException
         | IOException
