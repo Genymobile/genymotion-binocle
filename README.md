@@ -2,7 +2,7 @@ genymotion-binocle
 ==================
 
 *An Android app showing Genymotion Java API usage.*  
-![Binocle](../blob/master/binocle/src/main/res/drawable-xxxhdpi/ic_launcher.png?raw=true)
+![Binocle](master/binocle/src/main/res/drawable-xxxhdpi/ic_launcher.png?raw=true)
 
 
 This is a simple Android app with Android tests demonstrating how to use Genymotion Java API to check the behavior of your app when sensors values change.
