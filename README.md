@@ -1,9 +1,11 @@
 genymotion-binocle
 ==================
 
-*An Android app showing Genymotion API usage.*
+*An Android app showing Genymotion Java API usage.*  
+![Binocle](../blob/master/binocle/src/main/res/drawable-xxxhdpi/ic_launcher.png?raw=true)
 
-This is a simple Android app with android tests demonstrating how to use Genymotion API to check behavior of your app on sensors changes.
+
+This is a simple Android app with Android tests demonstrating how to use Genymotion Java API to check the behavior of your app when sensors values change.
 
 [Genymotion Java Api documentation](https://cloud.genymotion.com/page/api/)    
 [Genymotion Java Api Javadoc](https://cloud.genymotion.com/static/external/javadoc/index.html)
@@ -11,25 +13,25 @@ This is a simple Android app with android tests demonstrating how to use Genymot
 ### Battery
 This activity displays a warning if the device is not plugged to a power source and has got less than 10% power left.  
 Here is the Fragment showing it: [BatterySampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/BatterySampleFragment.java)  
-Here is an androidTest testing for the behavior: [TestBattery.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestBattery.java)
+Here is an androidTest testing the behavior: [TestBattery.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestBattery.java)
 
 ### GPS
 This activity displays a message if the device is localized near a specific place.  
 Here is the Fragment showing it: [GpsSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/GpsSampleFragment.java)  
-Here is an androidTest testing for the behavior:  [TestGps.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestGps.java)
+Here is an androidTest testing the behavior:  [TestGps.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestGps.java)
 
 ### Radio
 This activity displays a message if the device is a nexus 4 device, as recognized by its IMEI number.  
 Here is the Fragment showing it: [RadioSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/RadioSampleFragment.java)  
-Here is an androidTest testing for the behavior:  [TestRadio.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestRadio.java)
+Here is an androidTest testing the behavior:  [TestRadio.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestRadio.java)
 
 ### Id
-This activity encrypt data using ANDROID_ID to avoid the backup data to be moved on another Android device.  
+This activity encrypts data using ANDROID_ID to avoid the backed up data to be moved to another Android device.  
 Here is the Fragment showing it: [IdSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/IdSampleFragment.java)  
-Here is an androidTest testing for the behavior:  [TestId.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestId.java)
+Here is an androidTest testing the behavior:  [TestId.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestId.java)
 
 
-# Licence
+# License
 ```
 Copyright 2014 Genymotion
 
