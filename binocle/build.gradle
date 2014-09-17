@@ -1,12 +1,19 @@
 buildscript {
+    /* Genymotion plugin import needs to be inside the buildscript block */
     repositories {
         mavenCentral()
+        maven {
+            url uri('../../gradle/repo/')
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.12.2'
+        classpath 'com.genymotion:gradlePlugin:1.0'
     }
+
 }
 apply plugin: 'android'
+apply plugin: 'genymotion'
 
 repositories {
     mavenLocal()
@@ -42,4 +49,14 @@ dependencies {
     compile 'com.android.support:appcompat-v7:19.1.0'
     compile 'com.android.support:support-v4:19.1.0'
     androidTestCompile 'com.genymotion.api:genymotion-api:1.0.0'
+}
+
+genymotion.config {
+    genymotionPath = "/home/eyal/genymotion-app/"       //set the Genymotion path to PATH
+}
+
+genymotion {
+    device(
+        name: "Google Nexus 5 - 4.4.2 - API 19 - 1080x1920" //define the virtual device name to launch
+    )
 }
