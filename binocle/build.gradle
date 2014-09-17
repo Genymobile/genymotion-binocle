@@ -1,4 +1,5 @@
 buildscript {
+    /* Genymotion plugin import needs to be inside the buildscript block */
     repositories {
         mavenCentral()
         maven {
