@@ -52,7 +52,7 @@ dependencies {
 }
 
 genymotion.config {
-    genymotionPath = "/home/eyal/genymotion-app/"       //set the Genymotion path to PATH
+    genymotionPath = "/home/eyal/genymotion-app-tools/"       //set the Genymotion path to PATH
 }
 
 genymotion {
