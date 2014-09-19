@@ -28,7 +28,7 @@ public class ApiCallListFragment extends ListFragment {
      * A dummy implementation of the {@link Callbacks} interface that does
      * nothing. Used only when this fragment is not attached to an activity.
      */
-    private static Callbacks sDummyCallbacks = new Callbacks() {
+    private static final Callbacks sDummyCallbacks = new Callbacks() {
         @Override
         public void onItemSelected(String id) {
         }
@@ -54,7 +54,7 @@ public class ApiCallListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setListAdapter(new ArrayAdapter<ApiCallSamples.ApiCallSamplesItem>(
+        setListAdapter(new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1,

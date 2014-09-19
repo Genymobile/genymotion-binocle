@@ -15,7 +15,7 @@ import junit.framework.Assert;
 
 public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> {
 
-    RadioSampleFragment fragmentRadio;
+    private RadioSampleFragment fragmentRadio;
 
     public TestRadio() {
         super(SampleActivity.class);
