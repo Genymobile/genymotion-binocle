@@ -27,14 +27,21 @@ public class SampleActivity extends ActionBarActivity {
 
         // Create fragment if it does not already exists
         if (fragment == null) {
-            if (BatterySampleFragment.TAG.equals(tag)) {
-                fragment = new BatterySampleFragment();
-            } else if (GpsSampleFragment.TAG.equals(tag)) {
-                fragment = new GpsSampleFragment();
-            } else if (RadioSampleFragment.TAG.equals(tag)) {
-                fragment = new RadioSampleFragment();
-            } else if (IdSampleFragment.TAG.equals(tag)) {
-                fragment = new IdSampleFragment();
+            switch (tag) {
+                case BatterySampleFragment.TAG:
+                    fragment = new BatterySampleFragment();
+                    break;
+                case GpsSampleFragment.TAG:
+                    fragment = new GpsSampleFragment();
+                    break;
+                case RadioSampleFragment.TAG:
+                    fragment = new RadioSampleFragment();
+                    break;
+                case IdSampleFragment.TAG:
+                    fragment = new IdSampleFragment();
+                    break;
+                default:
+                    break;
             }
         }
 
