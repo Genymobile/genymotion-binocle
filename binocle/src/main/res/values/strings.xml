@@ -24,8 +24,8 @@
     <string name="encode">Encrypt secret</string>
     <string name="decode">Decrypt secret</string>
     <string name="encoding_done">Secret have been encrypted on disk using ANDROID_ID. Current ANDROID_ID is %s.</string>
-    <string name="encoding_failed">An error occured when encrypting secret!</string>
+    <string name="encoding_failed">An error occurred when encrypting secret!</string>
     <string name="decoding_done">Secret have been correctly decrypted from disk! secret message was:\n %s</string>
-    <string name="decoding_failed">An error occured when decrypting secret!</string>
+    <string name="decoding_failed">An error occurred when decrypting secret!</string>
 
 </resources>

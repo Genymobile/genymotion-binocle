@@ -51,7 +51,9 @@ android {
             minSdkVersion 14
         }
     }
-}
+    lintOptions {
+        abortOnError false
+    }
 
 
 dependencies {

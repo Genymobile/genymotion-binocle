@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:text="@string/android_id"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -31,6 +32,7 @@
         android:text="@string/decode"
         android:id="@+id/btn_decode"
         android:layout_alignTop="@+id/btn_encode"
-        android:layout_toRightOf="@+id/btn_encode"/>
+        android:layout_toRightOf="@+id/btn_encode"
+        android:layout_toEndOf="@+id/btn_encode"/>
 
 </RelativeLayout>

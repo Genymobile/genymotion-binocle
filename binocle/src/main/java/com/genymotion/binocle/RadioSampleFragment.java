@@ -14,10 +14,10 @@ public class RadioSampleFragment extends Fragment {
 
     public static final String TAG = "Radio";
 
-    public static final String NEXUS_4_TAC = "35391805";
-    public static final String NEXUS_5_TAC = "35824005";
+    private static final String NEXUS_4_TAC = "35391805";
+    private static final String NEXUS_5_TAC = "35824005";
 
-    TextView tvRadioDeviceType = null;
+    private TextView tvRadioDeviceType = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

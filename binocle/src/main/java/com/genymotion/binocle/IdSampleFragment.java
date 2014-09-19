@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.*;
@@ -31,12 +30,12 @@ public class IdSampleFragment extends Fragment implements View.OnClickListener{
     public static final String TAG = "Id";
 
     public static final String SECRET_MESSAGE = "Genymotion ♥ developpers!";
-    public static final String FILE_NAME = "encrypted_data";
+    private static final String FILE_NAME = "encrypted_data";
     private final Charset UTF8_CHARSET = Charset.forName("UTF-8");
 
-    TextView tvAndroidId;
+    private TextView tvAndroidId;
 
-    private byte[] salt = {
+    private final byte[] salt = {
             (byte) 0xde, (byte) 0xad, (byte) 0xbe, (byte) 0xef,
             (byte) 0xba, (byte) 0xad, (byte) 0xca, (byte) 0xfe
     };
