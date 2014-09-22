@@ -40,6 +40,9 @@ public class SampleActivity extends ActionBarActivity {
                 case IdSampleFragment.TAG:
                     fragment = new IdSampleFragment();
                     break;
+                case PhoneSampleFragment.TAG:
+                    fragment = new PhoneSampleFragment();
+                    break;
                 default:
                     break;
             }
