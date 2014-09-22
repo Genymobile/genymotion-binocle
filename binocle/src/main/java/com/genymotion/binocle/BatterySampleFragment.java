@@ -56,7 +56,7 @@ public class BatterySampleFragment extends Fragment {
         return rootView;
     }
 
-    public void handleBatteryStatus(Intent batteryStatus) {
+    void handleBatteryStatus(Intent batteryStatus) {
 
         // Are we charging / charged yet?
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
