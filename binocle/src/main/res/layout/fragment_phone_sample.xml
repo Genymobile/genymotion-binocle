@@ -28,6 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:visibility="gone"
-        android:id="@+id/phone_activation_picto" />
+        android:id="@+id/phone_activation_picto"
+        android:contentDescription="@string/phone_activation_picto_desc"/>
 
 </RelativeLayout>
