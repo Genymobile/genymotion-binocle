@@ -28,4 +28,10 @@
     <string name="decoding_done">Secret have been correctly decrypted from disk! secret message was:\n %s</string>
     <string name="decoding_failed">An error occurred when decrypting secret!</string>
 
+    <!-- phone labels -->
+    <string name="phone_explain">This activity is waiting for an activation code over SMS. To activate it, you need to send
+        an SMS containing the string "666".</string>
+    <string name="phone_waiting">Waiting for SMS with activation code...</string>
+    <string name="phone_received">SMS received, activation code is valid!</string>
+
 </resources>
