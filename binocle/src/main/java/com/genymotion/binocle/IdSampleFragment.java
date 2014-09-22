@@ -64,7 +64,7 @@ public class IdSampleFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    public void doEncode() {
+    void doEncode() {
         try {
             // Set up secret key spec for 128-bit AES encryption
             String androidId = Secure.getString(getActivity().getContentResolver(), Secure.ANDROID_ID);
@@ -101,7 +101,7 @@ public class IdSampleFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    public void doDecode(){
+    void doDecode(){
         try {
             // Set up secret key spec for 128-bit AES decryption
             String androidId = Secure.getString(getActivity().getContentResolver(), Secure.ANDROID_ID);
