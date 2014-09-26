@@ -9,7 +9,6 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:0.12.2'
         classpath 'com.genymotion:gradlePlugin:1.0'
-        classpath 'org.codehaus.groovy:groovy-backports-compat23:2.3.5'
     }
 
 }
