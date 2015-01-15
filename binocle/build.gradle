@@ -1,5 +1,4 @@
 buildscript {
-    /* Genymotion plugin import needs to be inside the buildscript block */
     repositories {
         mavenCentral()
         maven {
@@ -7,12 +6,12 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.2'
-        classpath 'com.genymotion:gradlePlugin:1.0'
+        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath 'com.genymotion:gradlePlugin:+'
     }
 
 }
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 apply plugin: 'genymotion'
 
 repositories {
@@ -35,7 +34,7 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
@@ -43,7 +42,20 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
+    productFlavors {
+        flavor1 {
+            applicationId "com.genymotion.binocle.flavor1"
+            versionCode 20
+        }
+
+        flavor2 {
+            applicationId "com.genymotion.binocle.flavor2"
+            minSdkVersion 14
+        }
+    }
 }
+
 
 dependencies {
     compile 'com.android.support:appcompat-v7:19.1.0'
@@ -52,11 +64,128 @@ dependencies {
 }
 
 genymotion.config {
-    genymotionPath = "/home/eyal/genymotion-app-tools/"       //set the Genymotion path to PATH
+    genymotionPath = "/home/eyal/genymotion/genymotion-softs/build/"
+    verbose = false
+    abortOnError = false
+//    launchTask: "calabash"
 }
 
 genymotion {
     device(
-        name: "Google Nexus 5 - 4.4.2 - API 19 - 1080x1920" //define the virtual device name to launch
+        template: "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920",
     )
+
+
+    productFlavors {
+        flavor1 {
+            device(
+                    name: "Nexus 7", //define the virtual device name to launch
+                    template: "Google Nexus 7 - 4.2.2 - API 17 - 800x1280",
+        //            lang: "en"
+            )
+        }
+
+        flavor2 {
+            device(
+                    name: "Nexus 10", //define the virtual device name to launch
+                    template: "Google Nexus 10 - 4.3 - API 18 - 2560x1600",
+
+                    flash: "$project.rootDir/binocle/src/androidTest/res/test.zip",
+                    install: "$project.rootDir/binocle/src/androidTest/res/test.apk",
+                    pushBefore: ["$project.rootDir/binocle/src/androidTest/res/test.txt"],
+                    pullAfter: ["/system/build.prop":"$project.rootDir/binocle/src/androidTest/res/"],
+                    logcat: "$project.rootDir/binocle/src/androidTest/res/Nexus 10.logcat",
+                    deleteWhenFinish: false,
+                    virtualKeyboard: true
+            )
+        }
+    }
 }
+genymotion {
+    devices {
+        nexus5 {
+            template "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920"
+            width 1200
+        }
+        productFlavors {
+            flavor1 {
+                "my nexus 10" {
+                    template "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920"
+                    width 1200
+                }
+            }
+        }
+    }
+}
+
+
+
+genymotion {
+    devices {
+        nexus5 {
+            template "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920"
+            width 1200
+        }
+        "my nexus 10" {
+            template "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920"
+            productFlavors "flavor1"
+        }
+        "nexus 7" {
+            template "Google Nexus 10..."
+            productFlavors "flavor1", "flavor2"
+        }
+    }
+}
+
+
+/* DEVICE
+    name
+    width
+    height
+    density (ldpi, mdpi, hdpi, ...)
+    nbCpu
+    ram
+    navbarVisible
+    virtualKeyboard
+
+    start
+    template
+    pushBefore
+    pullBefore
+    pushAfter
+    pullAfter
+    install
+    flash
+    logcat
+    deleteWhenFinish
+    stopWhenFinish
+*/
+
+/* CONFIG
+    fromFile
+    statistics
+    username
+    password
+    loginFromFile
+    store_credentials
+    licence
+    proxy
+    proxyFromFile
+    proxy_address
+    proxy_port
+    proxy_auth
+    proxy_username
+    proxy_password
+    devices_path
+    sdk_path
+    use_custom_sdk
+
+    screen_captures_path
+    taskLaunch
+    taskFinish
+    automaticLaunch
+    processTimeout
+    verbose
+    persist
+    abortOnError
+*/
