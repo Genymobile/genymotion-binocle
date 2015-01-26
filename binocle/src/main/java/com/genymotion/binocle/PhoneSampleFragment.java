@@ -17,7 +17,7 @@ public class PhoneSampleFragment extends Fragment {
 
     public static final String TAG = "Phone";
 
-    private final BroadcastReceiver smsReceivedReciever = new BroadcastReceiver() {
+    private final BroadcastReceiver smsReceivedReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             Bundle extras = intent.getExtras();
@@ -46,12 +46,12 @@ public class PhoneSampleFragment extends Fragment {
         // Register sms listener
         IntentFilter filter = new IntentFilter();
         filter.addAction("android.provider.Telephony.SMS_RECEIVED");
-        getActivity().registerReceiver(smsReceivedReciever, filter);
+        getActivity().registerReceiver(smsReceivedReceiver, filter);
     }
 
     @Override
     public void onPause() {
-        getActivity().unregisterReceiver(smsReceivedReciever);
+        getActivity().unregisterReceiver(smsReceivedReceiver);
 
         super.onPause();
     }
