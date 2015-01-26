@@ -30,10 +30,14 @@ This activity encrypts data using ANDROID_ID to avoid the backed up data to be m
 Here is the Fragment showing it: [IdSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/IdSampleFragment.java)  
 Here is an androidTest testing the behavior:  [TestId.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestId.java)
 
+### Phone
+This activity displays a green check when the device receive an SMS containing '666'.
+Here is the Fragment showing it: [PhoneSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/PhoneSampleFragment.java)
+Here is an androidTest testing the behavior: [TestPhone.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestPhone.java)
 
 # License
 ```
-Copyright 2014 Genymotion
+Copyright 2015 Genymotion
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -15,7 +15,7 @@ import junit.framework.Assert;
 
 public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> {
 
-    RadioSampleFragment fragmentRadio;
+    private RadioSampleFragment fragmentRadio;
 
     public TestRadio() {
         super(SampleActivity.class);
@@ -36,7 +36,7 @@ public class TestRadio extends ActivityInstrumentationTestCase2<SampleActivity> 
         // Faking a Google Nexus 4
         genymotion.getRadio().setDeviceId("353918050000000");
 
-        // Add parameter to allow activity to start and create fragment GpsSampleFragment.
+        // Add parameter to allow activity to start and create fragment RadioSampleFragment.
         Intent radioIntent;
         radioIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
         radioIntent.putExtra(SampleActivity.ARG_ITEM_ID, RadioSampleFragment.TAG);
