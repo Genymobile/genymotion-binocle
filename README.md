@@ -5,35 +5,37 @@ genymotion-binocle
 ![Binocle](../master/binocle/src/main/res/drawable-xxxhdpi/ic_launcher.png?raw=true)
 
 
-This is a simple Android app with Android tests demonstrating how to use Genymotion Java API to check the behavior of your app when sensors values change.
+Binocle is a simple application showcasing Genymotion Java API use.
+In this application, you can find activities for which the behavior depends on sensor values.
+Below are some Android test examples built with Genymotion Java API to manipulate sensor values and check activity behaviors.
 
 [Genymotion Java Api documentation](https://cloud.genymotion.com/page/api/)    
 [Genymotion Java Api Javadoc](https://cloud.genymotion.com/static/external/javadoc/index.html)
 
 ### Battery
-This activity displays a warning if the device is not plugged to a power source and has got less than 10% power left.  
-Here is the Fragment showing it: [BatterySampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/BatterySampleFragment.java)  
-Here is an androidTest testing the behavior: [TestBattery.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestBattery.java)
+An application must display a warning if the device is not plugged to a power source and has less than 10% of charge left.  
+* Here is the fragment showing it: [BatterySampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/BatterySampleFragment.java)  
+* Here is an Android test of the behavior: [TestBattery.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestBattery.java)
 
 ### GPS
-This activity displays a message if the device is localized near a specific place.  
-Here is the Fragment showing it: [GpsSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/GpsSampleFragment.java)  
-Here is an androidTest testing the behavior:  [TestGps.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestGps.java)
+An application must display a message if the device is localized near a specific place.  
+* Here is the fragment showing it: [GpsSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/GpsSampleFragment.java)  
+* Here is an Android test of the behavior:  [TestGps.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestGps.java)
 
 ### Radio
-This activity displays a message if the device is a nexus 4 device, as recognized by its IMEI number.  
-Here is the Fragment showing it: [RadioSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/RadioSampleFragment.java)  
-Here is an androidTest testing the behavior:  [TestRadio.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestRadio.java)
+An application must display a message if the device is a Nexus 4, as recognized by its IMEI number.  
+* Here is the fragment showing it: [RadioSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/RadioSampleFragment.java)  
+* Here is an Android test of the behavior:  [TestRadio.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestRadio.java)
 
 ### Id
-This activity encrypts data using ANDROID_ID to avoid the backed up data to be moved to another Android device.  
-Here is the Fragment showing it: [IdSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/IdSampleFragment.java)  
-Here is an androidTest testing the behavior:  [TestId.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestId.java)
+An application must encrypt data using ANDROID_ID to avoid the backed up data to be moved on another Android device.  
+* Here is the fragment showing it: [IdSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/IdSampleFragment.java)  
+* Here is an Android test of the behavior:  [TestId.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestId.java)
 
 ### Phone
-This activity displays a green check when the device receive an SMS containing '666'.
-Here is the Fragment showing it: [PhoneSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/PhoneSampleFragment.java)
-Here is an androidTest testing the behavior: [TestPhone.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestPhone.java)
+An application must display a green check when the device receives an SMS containing "666".
+* Here is the fragment showing it: [PhoneSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/PhoneSampleFragment.java)
+* Here is an Android test of the behavior: [TestPhone.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestPhone.java)
 
 # License
 ```
