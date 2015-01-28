@@ -13,7 +13,7 @@ Below are some Android test examples built with Genymotion Java API to manipulat
 [Genymotion Java Api Javadoc](https://cloud.genymotion.com/static/external/javadoc/index.html)
 
 ### Battery
-An application must display a warning if the device is not plugged to a power source and has less than 10% of charge left.  
+This part of the application displays a warning if the device is not plugged to a power source and has less than 10% of charge left.  
 * Here is the fragment showing it: [BatterySampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/BatterySampleFragment.java)  
 * Here is an Android test of the behavior: [TestBattery.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestBattery.java)
 
