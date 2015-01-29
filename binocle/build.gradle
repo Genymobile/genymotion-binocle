@@ -33,6 +33,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -57,9 +58,9 @@ android {
 
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:21.0.2'
-    compile 'com.android.support:support-v4:21.0.2'
-    androidTestCompile 'com.genymotion.api:genymotion-api:1.0.0'
+    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:support-v4:21.0.3'
+    androidTestCompile 'com.genymotion.api:genymotion-api:1.0.2'
 }
 
 genymotion.config {
