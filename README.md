@@ -18,22 +18,22 @@ This part of the application displays a warning if the device is not plugged to 
 * Here is an Android test of the behavior: [TestBattery.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestBattery.java)
 
 ### GPS
-An application must display a message if the device is localized near a specific place.  
+This part of the application displays a message if the device is localized near a specific place.  
 * Here is the fragment showing it: [GpsSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/GpsSampleFragment.java)  
 * Here is an Android test of the behavior:  [TestGps.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestGps.java)
 
 ### Radio
-An application must display a message if the device is a Nexus 4, as recognized by its IMEI number.  
+This part of the application displays a message if the device is a Nexus 4, as recognized by its IMEI number.  
 * Here is the fragment showing it: [RadioSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/RadioSampleFragment.java)  
 * Here is an Android test of the behavior:  [TestRadio.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestRadio.java)
 
 ### Id
-An application must encrypt data using ANDROID_ID to avoid the backed up data to be moved on another Android device.  
+This part of the application encrypts data using ANDROID_ID to avoid the backed up data to be moved on another Android device.  
 * Here is the fragment showing it: [IdSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/IdSampleFragment.java)  
 * Here is an Android test of the behavior:  [TestId.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestId.java)
 
 ### Phone
-An application must display a green check when the device receives an SMS containing "666".
+This part of the application displays a green check when the device receives an SMS containing "666".
 * Here is the fragment showing it: [PhoneSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/PhoneSampleFragment.java)
 * Here is an Android test of the behavior: [TestPhone.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/instrumentTest/java/com/genymotion/binocle/test/TestPhone.java)
 
