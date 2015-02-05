@@ -4,6 +4,7 @@ buildscript {
         maven {
             url uri('../../gradle/repo/')
         }
+//        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.0.0'
@@ -44,11 +45,7 @@ android {
     }
 
     productFlavors {
-        flavor1 {
-            applicationId "com.genymotion.binocle.flavor1"
-            versionCode 20
-        }
-
+//        flavor1
         flavor2 {
             applicationId "com.genymotion.binocle.flavor2"
             minSdkVersion 14
@@ -64,78 +61,29 @@ dependencies {
 }
 
 genymotion.config {
-    genymotionPath = "/home/eyal/genymotion/genymotion-softs/build/"
-    verbose = false
-    abortOnError = false
-//    launchTask: "calabash"
+    genymotionPath "/home/eyal/genymotion/genymotion-softs/build/"
+    verbose = true
 }
-
-genymotion {
-    device(
-        template: "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920",
-    )
-
-
-    productFlavors {
-        flavor1 {
-            device(
-                    name: "Nexus 7", //define the virtual device name to launch
-                    template: "Google Nexus 7 - 4.2.2 - API 17 - 800x1280",
-        //            lang: "en"
-            )
-        }
-
-        flavor2 {
-            device(
-                    name: "Nexus 10", //define the virtual device name to launch
-                    template: "Google Nexus 10 - 4.3 - API 18 - 2560x1600",
-
-                    flash: "$project.rootDir/binocle/src/androidTest/res/test.zip",
-                    install: "$project.rootDir/binocle/src/androidTest/res/test.apk",
-                    pushBefore: ["$project.rootDir/binocle/src/androidTest/res/test.txt"],
-                    pullAfter: ["/system/build.prop":"$project.rootDir/binocle/src/androidTest/res/"],
-                    logcat: "$project.rootDir/binocle/src/androidTest/res/Nexus 10.logcat",
-                    deleteWhenFinish: false,
-                    virtualKeyboard: true
-            )
-        }
-    }
-}
-genymotion {
-    devices {
-        nexus5 {
-            template "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920"
-            width 1200
-        }
-        productFlavors {
-            flavor1 {
-                "my nexus 10" {
-                    template "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920"
-                    width 1200
-                }
-            }
-        }
-    }
-}
-
-
 
 genymotion {
     devices {
-        nexus5 {
-            template "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920"
-            width 1200
-        }
+//        nexus5
         "my nexus 10" {
-            template "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920"
-            productFlavors "flavor1"
-        }
-        "nexus 7" {
-            template "Google Nexus 10..."
-            productFlavors "flavor1", "flavor2"
+            template "Google Nexus 7 - 4.1.1 - API 16 - 800x1280"
+            productFlavors "flavor2"
+            logcat "tmp/logcat.dump"+System.currentTimeMillis()
+//            clearLogAfterBoot false
+
+//            pushBefore "/path/to/config"
+//            pullAfter "/path/to/result":"/path/to/destination/"
+//            flash "/path/to/file.zip"
         }
     }
 }
+
+
+/*
+*/
 
 
 /* DEVICE
@@ -157,6 +105,7 @@ genymotion {
     install
     flash
     logcat
+    clearLogAfterBoot
     deleteWhenFinish
     stopWhenFinish
 */
