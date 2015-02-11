@@ -1,8 +1,8 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven {
-            url uri('../../gradle/repo/')
+	    maven {
+            url uri('/home/genymobile/jenkins/workspace/Genymotion Gradle Plugin/gradle/repo')
         }
 //        jcenter()
     }
