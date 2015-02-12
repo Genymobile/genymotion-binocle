@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         mavenCentral()
-	    maven {
+        maven {
             url uri('/home/genymobile/jenkins/workspace/Genymotion Gradle Plugin/gradle/repo')
         }
 //        jcenter()
@@ -61,7 +61,7 @@ dependencies {
 }
 
 genymotion.config {
-    genymotionPath "/home/eyal/genymotion/genymotion-softs/build/"
+    genymotionPath "/home/genymobile/genymotion-gmtool/"
     verbose = true
 }
 
