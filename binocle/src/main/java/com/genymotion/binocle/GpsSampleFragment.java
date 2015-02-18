@@ -15,18 +15,18 @@ import android.widget.TextView;
 public class GpsSampleFragment extends Fragment {
 
     public static final String TAG = "Gps";
-    static final int EARTH_R = 6371; //km
-    TextView tvGpsWarning;
-    TextView tvGpsCurrentLat;
-    TextView tvGpsCurrentLng;
-    TextView tvGpsDistanceToDalvik;
-    LocationManager locationManager;
-    LocationListener locationListener;
+    private static final int EARTH_R = 6371; //km
+    private TextView tvGpsWarning;
+    private TextView tvGpsCurrentLat;
+    private TextView tvGpsCurrentLng;
+    private TextView tvGpsDistanceToDalvik;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
 
     /*
     Calculate distance in km between two coordinates using HaverSine method.
      */
-    static double getHaverSineDistance(double latSrc, double lngSrc, double latDst, double lngDst) {
+    private static double getHaverSineDistance(double latSrc, double lngSrc, double latDst, double lngDst) {
         double dLat = Math.toRadians(latDst - latSrc);
         double dLon = Math.toRadians(lngDst - lngSrc);
         double latSrcRad = Math.toRadians(latSrc);

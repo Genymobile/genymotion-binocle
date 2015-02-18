@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.genymotion.api.Battery;
 import com.genymotion.api.GenymotionManager;
-import com.genymotion.api.NotGenymotionDeviceException;
 import com.genymotion.binocle.BatterySampleFragment;
 import com.genymotion.binocle.R;
 import com.genymotion.binocle.SampleActivity;
@@ -18,7 +17,7 @@ import junit.framework.Assert;
 
 public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity> {
 
-    BatterySampleFragment fragmentBattery;
+    private BatterySampleFragment fragmentBattery;
 
     public TestBattery() {
         super(SampleActivity.class);

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.genymotion.api.GenymotionManager;
-import com.genymotion.api.NotGenymotionDeviceException;
 import com.genymotion.binocle.GpsSampleFragment;
 import com.genymotion.binocle.R;
 import com.genymotion.binocle.SampleActivity;
@@ -18,7 +17,7 @@ import junit.framework.Assert;
 
 public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
 
-    GpsSampleFragment fragmentGps;
+    private GpsSampleFragment fragmentGps;
 
     public TestGps() {
         super(SampleActivity.class);

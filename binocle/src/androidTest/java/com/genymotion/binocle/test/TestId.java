@@ -16,7 +16,7 @@ import junit.framework.Assert;
 
 public class TestId extends ActivityInstrumentationTestCase2<SampleActivity> {
 
-    IdSampleFragment fragmentAndroidID;
+    private IdSampleFragment fragmentAndroidID;
 
     public TestId() {
         super(SampleActivity.class);
@@ -61,17 +61,17 @@ public class TestId extends ActivityInstrumentationTestCase2<SampleActivity> {
 
         // Must have been correctly decoded
         String text = tvAndroidId.getText().toString();
-        Assert.assertTrue(text.endsWith(fragmentAndroidID.SECRET_MESSAGE));
+        Assert.assertTrue(text.endsWith(IdSampleFragment.SECRET_MESSAGE));
 
         // Decoding with android id = baadcafebaadcafe
         genymotion.getId().setAndroidId("baadcafebaadcafe");
         try {
             Thread.sleep(1000); //Android needs time to poll sensors and broadcast event.
-        } catch (InterruptedException ie) {}
+        } catch (InterruptedException ignored) {}
         btnDecode.performClick();
 
         // Must NOT been correctly decoded
         text = tvAndroidId.getText().toString();
-        Assert.assertFalse(text.endsWith(fragmentAndroidID.SECRET_MESSAGE));
+        Assert.assertFalse(text.endsWith(IdSampleFragment.SECRET_MESSAGE));
     }
 }

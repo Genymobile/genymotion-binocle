@@ -17,14 +17,14 @@ import android.widget.TextView;
 public class BatterySampleFragment extends Fragment {
 
     public static final String TAG = "Battery";
-    BroadcastReceiver batteryChangeReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver batteryChangeReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(BatterySampleFragment.TAG, "Battery value changed");
             handleBatteryStatus(intent);
         }
     };
-    TextView tvBatteryWarning;
+    private TextView tvBatteryWarning;
 
     @Override
     public void onResume() {
@@ -56,7 +56,7 @@ public class BatterySampleFragment extends Fragment {
         return rootView;
     }
 
-    public void handleBatteryStatus(Intent batteryStatus) {
+    void handleBatteryStatus(Intent batteryStatus) {
 
         // Are we charging / charged yet?
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);

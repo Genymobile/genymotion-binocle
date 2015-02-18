@@ -27,7 +27,7 @@ import android.view.MenuItem;
 public class ApiCallListActivity extends ActionBarActivity
         implements ApiCallListFragment.Callbacks {
 
-    static String currentTag;
+    private static String currentTag;
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
