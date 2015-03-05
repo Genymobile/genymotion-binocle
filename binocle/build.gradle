@@ -2,14 +2,11 @@ buildscript {
     /* Genymotion plugin import needs to be inside the buildscript block */
     repositories {
         mavenCentral()
-        maven {
-            url uri('/home/genymobile/jenkins/workspace/Genymotion Gradle Plugin/gradle/repo')
-        }
-//        jcenter()
+        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.0.1'
-        classpath 'com.genymotion:gradlePlugin:+'
+        classpath 'com.genymotion:plugin:+'
     }
 
 }
