@@ -63,7 +63,7 @@ dependencies {
 }
 
 genymotion.config {
-    genymotionPath "/home/genymobile/genymotion-gmtool/"
+    genymotionPath = "/Applications/Genymotion.app/Content/MacOS/" //TODO change it if needed
     verbose = true
 }
 
