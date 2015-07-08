@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.0.1'
-        classpath 'com.genymotion:plugin:+'
+        classpath 'com.genymotion:plugin:1.0'
     }
 
 }
@@ -69,13 +69,14 @@ genymotion.config {
 
 genymotion {
     devices {
-//        nexus5
-        "my nexus 10" {
+        nexus5 {
+            template "Google Nexus 5 - 5.1.0 - API 16 - 1920x1080"
+        }
+        "my nexus 7" {
             template "Google Nexus 7 - 4.1.1 - API 16 - 800x1280"
             productFlavors "flavor2"
             logcat "tmp/logcat.dump"+System.currentTimeMillis()
 //            clearLogAfterBoot false
-
 //            pushBefore "/path/to/config"
 //            pullAfter "/path/to/result":"/path/to/destination/"
 //            flash "/path/to/file.zip"
