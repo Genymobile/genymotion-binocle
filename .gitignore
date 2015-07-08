@@ -1,10 +1,10 @@
 #IntelliJ
-.idea/workspace.xml
-.idea/tasks.xml
+.idea/
+*.iml
 
 #Gradle
-.gradle
+.gradle/
 /local.properties
-/.idea
+
 .DS_Store
 build/
