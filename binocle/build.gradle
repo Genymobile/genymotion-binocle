@@ -1,12 +1,15 @@
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.0.1'
+        classpath 'com.genymotion:plugin:1.0'
     }
 }
 apply plugin: 'com.android.application'
+apply plugin: 'genymotion'
 
 repositories {
     mavenLocal()
@@ -37,6 +40,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
+    productFlavors {
+        flavor1
+        flavor2 {
+            applicationId "com.genymotion.binocle.flavor2"
+            minSdkVersion 14
+        }
+    }
+
 }
 
 dependencies {
@@ -44,3 +56,74 @@ dependencies {
     compile 'com.android.support:support-v4:21.0.3'
     androidTestCompile 'com.genymotion.api:genymotion-api:1.0.2'
 }
+
+genymotion.config {
+    genymotionPath = "" //TODO (on Linux only)
+}
+
+genymotion {
+    devices {
+        nexus5 {
+            template "Google Nexus 5 - 5.1.0 - API 22 - 1080x1920"
+        }
+        "my nexus 7" {
+            template "Google Nexus 7 - 4.1.1 - API 16 - 800x1280"
+            productFlavors "flavor2"
+            logcat "tmp/logcat.dump."+System.currentTimeMillis()
+            clearLogAfterBoot false
+        }
+    }
+}
+
+
+/* DEVICE
+    width
+    height
+    density (ldpi, mdpi, hdpi, ...)
+    nbCpu
+    ram
+    navbarVisible
+    virtualKeyboard
+
+    start
+    template
+    pushBefore
+    pullBefore
+    pushAfter
+    pullAfter
+    install
+    flash
+    logcat
+    clearLogAfterBoot
+    deleteWhenFinish
+    stopWhenFinish
+*/
+
+/* CONFIG
+    fromFile
+    statistics
+    username
+    password
+    loginFromFile
+    store_credentials
+    licence
+    proxy
+    proxyFromFile
+    proxy_address
+    proxy_port
+    proxy_auth
+    proxy_username
+    proxy_password
+    devices_path
+    sdk_path
+    use_custom_sdk
+
+    screen_captures_path
+    taskLaunch
+    taskFinish
+    automaticLaunch
+    processTimeout
+    verbose
+    persist
+    abortOnError
+*/
