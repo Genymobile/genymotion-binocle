@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.genymotion.binocle">
 
 
@@ -26,7 +27,8 @@
         <activity
             android:name=".SampleActivity"
             android:label="@string/title_apicall_detail"
-            android:parentActivityName=".ApiCallListActivity">
+            android:parentActivityName=".ApiCallListActivity"
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ApiCallListActivity" />

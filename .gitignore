@@ -1,5 +1,8 @@
 .gradle
+.idea
+build
+out
+*.iws
 /local.properties
-/.idea
 .DS_Store
 *.iml

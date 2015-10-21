@@ -5,11 +5,10 @@ import android.support.v4.app.FragmentManager;
 import android.test.ActivityInstrumentationTestCase2;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.genymotion.api.GenymotionManager;
-import com.genymotion.binocle.R;
 import com.genymotion.binocle.PhoneSampleFragment;
+import com.genymotion.binocle.R;
 import com.genymotion.binocle.SampleActivity;
 
 import junit.framework.Assert;

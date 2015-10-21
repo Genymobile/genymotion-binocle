@@ -38,7 +38,7 @@ public class RadioSampleFragment extends Fragment {
         tvRadioDeviceType.setText(getResources().getString(R.string.radio_device_type, deviceType));
     }
 
-    String getDeviceType() {
+    private String getDeviceType() {
         TelephonyManager tm = (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         String imei = tm.getDeviceId();
         if (imei.startsWith(NEXUS_4_TAC)) {
