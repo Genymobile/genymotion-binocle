@@ -1,8 +1,14 @@
-.gradle
-.idea
-build
-out
-*.iws
-/local.properties
+# OS
 .DS_Store
+*~
+
+# IDE
+.gradle
+local.properties
+.idea
 *.iml
+
+# Build
+tmp
+out
+build
