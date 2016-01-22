@@ -57,10 +57,12 @@ genymotion {
     }
 
     devices {
-        "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920" {
+        nexus5 {
+            template "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920"
             productFlavors "api21"
         }
-        "Google Nexus 7 - 5.0.0 - API 21 - 800x1280" {
+        nexus7 {   
+            template "Google Nexus 7 - 5.0.0 - API 21 - 800x1280"
             productFlavors "custom"
             logcat "tmp/logcat.dump" + System.currentTimeMillis()
         }
