@@ -52,7 +52,7 @@ dependencies {
 
 genymotion {
     config {
-        genymotionPath = "<genymotion/local/path>" //change this to local genymotion path on the workstation
+        genymotionPath = "/home/genydeploy/genymotion"
         verbose = true
     }
 
