@@ -18,6 +18,7 @@
 
     <!-- radio labels -->
     <string name="radio_device_type">Your device is recognized as a: %s</string>
+    <string name="radio_device_imei">Your device imei is: %s</string>
 
     <!-- id labels -->
     <string name="android_id">Secret file can only be decoded on the device it has been created on. Current ANDROID_ID is %s.</string>
