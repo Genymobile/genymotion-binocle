@@ -58,7 +58,8 @@ dependencies {
 }
 
 genymotion.config {
-    genymotionPath = "" //TODO (on Linux only)
+    genymotionPath = "/Applications/Genymotion.app/Content/MacOS/" //TODO change it if needed
+    verbose = true
 }
 
 genymotion {
