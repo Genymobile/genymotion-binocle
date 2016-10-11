@@ -58,7 +58,7 @@ dependencies {
 }
 
 genymotion.config {
-    genymotionPath = "/Applications/Genymotion.app/Content/MacOS/" //TODO change it if needed
+    genymotionPath = "" // Mandatory on Linux only
     verbose = true
 }
 
