@@ -4,8 +4,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.1'
-        classpath 'com.genymotion:plugin:1.0'
+        classpath 'com.android.tools.build:gradle:1.2.3'
+        classpath 'com.genymotion:plugin:1.2'
     }
 }
 apply plugin: 'com.android.application'
@@ -20,12 +20,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 22
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 21
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -52,13 +52,14 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:21.0.3'
-    compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:support-v4:22.2.0'
     androidTestCompile 'com.genymotion.api:genymotion-api:1.0.2'
 }
 
 genymotion.config {
-    genymotionPath = "" //TODO (on Linux only)
+    genymotionPath = "" // Mandatory on Linux only
+    verbose = true
 }
 
 genymotion {

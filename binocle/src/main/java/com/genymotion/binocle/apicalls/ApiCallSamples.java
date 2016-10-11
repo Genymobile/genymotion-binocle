@@ -1,15 +1,13 @@
 package com.genymotion.binocle.apicalls;
 
-import com.genymotion.binocle.PhoneSampleFragment;
-import com.genymotion.binocle.IdSampleFragment;
 import com.genymotion.binocle.BatterySampleFragment;
 import com.genymotion.binocle.GpsSampleFragment;
+import com.genymotion.binocle.IdSampleFragment;
+import com.genymotion.binocle.PhoneSampleFragment;
 import com.genymotion.binocle.RadioSampleFragment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Helper class for providing api calls sample title
@@ -19,12 +17,7 @@ public class ApiCallSamples {
     /**
      * An array of sample (apiCalls) items.
      */
-    public static final List<ApiCallSamplesItem> ITEMS = new ArrayList<>();
-
-    /**
-     * A map of sample (apiCalls) items, by ID.
-     */
-    private static final Map<String, ApiCallSamplesItem> ITEM_MAP = new HashMap<>();
+    public static final List<ApiCallSamplesItem> ITEMS = new ArrayList<>(5);
 
     static {
         // Add all api calls sample items.
@@ -37,7 +30,6 @@ public class ApiCallSamples {
 
     private static void addItem(ApiCallSamplesItem item) {
         ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
     }
 
     /**

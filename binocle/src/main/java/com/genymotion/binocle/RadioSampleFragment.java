@@ -18,6 +18,7 @@ public class RadioSampleFragment extends Fragment {
     private static final String NEXUS_5_TAC = "35824005";
 
     private TextView tvRadioDeviceType = null;
+    private TextView tvRadioDeviceImei = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class RadioSampleFragment extends Fragment {
 
         //retrieve widgets
         tvRadioDeviceType = (TextView) rootView.findViewById(R.id.tv_radioDeviceType);
+        tvRadioDeviceImei = (TextView) rootView.findViewById(R.id.tv_radioDeviceImei);
 
         return rootView;
     }
@@ -33,14 +35,15 @@ public class RadioSampleFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        //default values
-        String deviceType = getDeviceType();
-        tvRadioDeviceType.setText(getResources().getString(R.string.radio_device_type, deviceType));
-    }
-
-    String getDeviceType() {
         TelephonyManager tm = (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         String imei = tm.getDeviceId();
+        String deviceType = getDeviceType(imei);
+
+        tvRadioDeviceType.setText(getResources().getString(R.string.radio_device_type, deviceType));
+        tvRadioDeviceImei.setText(getResources().getString(R.string.radio_device_imei, imei));
+    }
+
+    private String getDeviceType(String imei) {
         if (imei.startsWith(NEXUS_4_TAC)) {
             return "Nexus 4";
         } else if (imei.startsWith(NEXUS_5_TAC)) {

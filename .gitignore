@@ -1,5 +1,14 @@
-.gradle
-/local.properties
-/.idea
+# OS
 .DS_Store
+*~
+
+# IDE
+.gradle
+local.properties
+.idea
 *.iml
+
+# Build
+tmp
+out
+build
