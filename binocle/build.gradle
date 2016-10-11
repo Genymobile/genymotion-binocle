@@ -5,7 +5,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.2.3'
-        classpath 'com.genymotion:plugin:1.0'
+        classpath 'com.genymotion:plugin:1.2'
     }
 }
 apply plugin: 'com.android.application'
@@ -21,7 +21,7 @@ repositories {
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         minSdkVersion 9
@@ -58,7 +58,8 @@ dependencies {
 }
 
 genymotion.config {
-    genymotionPath = "" //TODO (on Linux only)
+    genymotionPath = "" // Mandatory on Linux only
+    verbose = true
 }
 
 genymotion {

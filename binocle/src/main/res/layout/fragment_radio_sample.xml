@@ -14,4 +14,10 @@
         android:layout_height="wrap_content"
         android:text="@string/radio_device_type" />
 
+    <TextView
+        android:id="@+id/tv_radioDeviceImei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/radio_device_imei" />
+
 </LinearLayout>
