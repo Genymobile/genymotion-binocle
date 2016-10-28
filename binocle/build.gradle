@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'spoon'
 
 repositories {
     mavenLocal()
@@ -35,6 +36,11 @@ android {
     lintOptions {
         abortOnError false
     }
+}
+
+spoon {
+    shard = true
+    grantAllPermissions = true
 }
 
 dependencies {
