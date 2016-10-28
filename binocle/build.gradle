@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'genymotion'
 
 repositories {
     mavenLocal()
@@ -33,14 +32,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
-    productFlavors {
-        api21;
-        custom {
-            applicationId "com.genymotion.binocle.flavor2"
-            minSdkVersion 14
-        }
-    }
-
     lintOptions {
         abortOnError false
     }
@@ -56,24 +47,5 @@ dependencies {
     }
     androidTestCompile 'com.android.support.test:runner:' + rootProject.runnerVersion, {
         exclude group: 'com.android.support', module: 'support-annotations'
-    }
-}
-
-genymotion {
-    config {
-        genymotionPath = "/home/genydeploy/genymotion"
-        verbose = true
-    }
-
-    devices {
-        nexus5 {
-            template "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920"
-            productFlavors "api21"
-        }
-        nexus7 {
-            template "Google Nexus 7 - 5.0.0 - API 21 - 800x1280"
-            productFlavors "custom"
-            logcat "tmp/logcat.dump" + System.currentTimeMillis()
-        }
     }
 }
