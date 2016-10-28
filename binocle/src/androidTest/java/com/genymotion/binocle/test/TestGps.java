@@ -1,59 +1,61 @@
 package com.genymotion.binocle.test;
 
-import android.content.Context;
 import android.content.Intent;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.app.FragmentManager;
-import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
 import com.genymotion.api.GenymotionManager;
 import com.genymotion.binocle.GpsSampleFragment;
 import com.genymotion.binocle.R;
 import com.genymotion.binocle.SampleActivity;
-
 import junit.framework.Assert;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
 
-    private GpsSampleFragment fragmentGps;
+@RunWith(AndroidJUnit4.class)
+public class TestGps {
 
-    public TestGps() {
-        super(SampleActivity.class);
-    }
+    @Rule
+    public ActivityTestRule<SampleActivity> mActivityRule = new ActivityTestRule<SampleActivity>(SampleActivity.class) {
+        @Override
+        protected Intent getActivityIntent() {
+            Intent gpsIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
+            gpsIntent.putExtra(SampleActivity.ARG_ITEM_ID, GpsSampleFragment.TAG);
+            return gpsIntent;
+        }
+    };
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
+    private GpsSampleFragment mFragmentGps;
 
-        // Add parameter to allow activity to start and create fragment GpsSampleFragment.
-        Intent gpsIntent;
-        gpsIntent = new Intent(getInstrumentation().getTargetContext(), SampleActivity.class);
-        gpsIntent.putExtra(SampleActivity.ARG_ITEM_ID, GpsSampleFragment.TAG);
-        setActivityIntent(gpsIntent);
-
+    @Before
+    public void setUp() {
         // Create activity and get fragment back
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        fragmentGps = (GpsSampleFragment) fragmentManager.findFragmentByTag(GpsSampleFragment.TAG);
+        FragmentManager fragmentManager = mActivityRule.getActivity().getSupportFragmentManager();
+        mFragmentGps = (GpsSampleFragment) fragmentManager.findFragmentByTag(GpsSampleFragment.TAG);
     }
 
+    @Test
     public void testGpsWarning() {
-
         if (!GenymotionManager.isGenymotionDevice()) {
             // Avoid test on non Genymotion devices.
             return;
         }
 
-        TextView tvWarning = (TextView) fragmentGps.getView().findViewById(R.id.tv_gpsWarning);
-        Context ctx = getActivity();
-        GenymotionManager genymotion = GenymotionManager.getGenymotionManager(ctx);
+        TextView tvWarning = (TextView) mFragmentGps.getView().findViewById(R.id.tv_gpsWarning);
+        GenymotionManager genymotion = GenymotionManager.getGenymotionManager(mActivityRule.getActivity());
 
         // Position to reykjavik (257km away))
         Log.d(GpsSampleFragment.TAG, "Force position to Reykjavik");
         genymotion.getGps()
-            .setLatitude(64.13367829)
-            .setLongitude(-21.8964386);
+                .setLatitude(64.13367829)
+                .setLongitude(-21.8964386);
         // Then ensure warning is hidden
         Assert.assertEquals(tvWarning.getVisibility(), View.GONE);
 

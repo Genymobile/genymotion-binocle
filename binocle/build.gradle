@@ -18,6 +18,7 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -49,11 +50,18 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:support-v4:24.2.1'
     androidTestCompile 'com.genymotion.api:genymotion-api:1.0.2'
+    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile 'com.android.support.test:runner:0.5', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
 }
 
 genymotion {
     config {
-        genymotionPath = "/home/flo/dev/genymotion/genymotion_devel/genymotion"
+        genymotionPath = "/home/genydeploy/genymotion"
         verbose = true
     }
 
@@ -62,7 +70,7 @@ genymotion {
             template "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920"
             productFlavors "api21"
         }
-        nexus7 {   
+        nexus7 {
             template "Google Nexus 7 - 5.0.0 - API 21 - 800x1280"
             productFlavors "custom"
             logcat "tmp/logcat.dump" + System.currentTimeMillis()
