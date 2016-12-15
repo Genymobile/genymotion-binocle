@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'spoon'
+apply plugin: 'genymotion'
 
 repositories {
     mavenLocal()
@@ -53,5 +54,21 @@ dependencies {
     }
     androidTestCompile 'com.android.support.test:runner:' + rootProject.runnerVersion, {
         exclude group: 'com.android.support', module: 'support-annotations'
+    }
+}
+
+genymotion.config {
+    genymotionPath = "" // Mandatory on Linux only
+    taskLaunch = "spoonDebugAndroidTest"
+}
+
+genymotion {
+    cloudDevices {
+        nexus6 {
+            template "Google Nexus 6 - 6.0.0 - API 23 - 1440x2560"
+        }
+        nexus7 {
+            template "Google Nexus 7 - 4.3 - API 18 - 800x1280"
+        }
     }
 }
