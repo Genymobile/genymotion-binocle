@@ -19,6 +19,9 @@ public class GpsSampleFragment extends Fragment {
     private TextView tvGpsWarning;
     private TextView tvGpsCurrentLat;
     private TextView tvGpsCurrentLng;
+    private TextView tvGpsCurrentAlt;
+    private TextView tvGpsCurrentBearing;
+    private TextView tvGpsCurrentAccuracy;
     private TextView tvGpsDistanceToDalvik;
     private LocationManager locationManager;
     private LocationListener locationListener;
@@ -53,6 +56,9 @@ public class GpsSampleFragment extends Fragment {
         tvGpsWarning = (TextView) rootView.findViewById(R.id.tv_gpsWarning);
         tvGpsCurrentLat = (TextView) rootView.findViewById(R.id.tv_gpsCurrentLat);
         tvGpsCurrentLng = (TextView) rootView.findViewById(R.id.tv_gpsCurrentLng);
+        tvGpsCurrentAlt = (TextView) rootView.findViewById(R.id.tv_gpsCurrentAlt);
+        tvGpsCurrentBearing = (TextView) rootView.findViewById(R.id.tv_gpsCurrentBearing);
+        tvGpsCurrentAccuracy = (TextView) rootView.findViewById(R.id.tv_gpsCurrentAccuracy);
         tvGpsDistanceToDalvik = (TextView) rootView.findViewById(R.id.tv_gpsDistanceToDalvik);
 
         //default values
@@ -60,6 +66,9 @@ public class GpsSampleFragment extends Fragment {
         tvGpsCurrentLat.setVisibility(View.INVISIBLE);
         tvGpsCurrentLng.setVisibility(View.INVISIBLE);
         tvGpsDistanceToDalvik.setVisibility(View.INVISIBLE);
+        tvGpsCurrentAlt.setVisibility(View.INVISIBLE);
+        tvGpsCurrentBearing.setVisibility(View.INVISIBLE);
+        tvGpsCurrentAccuracy.setVisibility(View.INVISIBLE);
 
         return rootView;
     }
@@ -89,9 +98,15 @@ public class GpsSampleFragment extends Fragment {
         public void onLocationChanged(Location loc) {
             final double latitude = loc.getLatitude();
             final double longitude = loc.getLongitude();
+            final double altitude = loc.getAltitude();
+            final float bearing = loc.getBearing();
+            final float accuracy = loc.getAccuracy();
 
             tvGpsCurrentLat.setText(getResources().getString(R.string.gps_currentLat, latitude));
             tvGpsCurrentLng.setText(getResources().getString(R.string.gps_currentLng, longitude));
+            tvGpsCurrentAlt.setText(getResources().getString(R.string.gps_currentAltitude, altitude));
+            tvGpsCurrentBearing.setText(getResources().getString(R.string.gps_currentBearing, bearing));
+            tvGpsCurrentAccuracy.setText(getResources().getString(R.string.gps_currentAccuracy, accuracy));
 
             // Calculate distance using haversine
             double distance = GpsSampleFragment.getHaverSineDistance(latitude, longitude, DALVIK_LAT, DALVIK_LNG);
@@ -101,6 +116,9 @@ public class GpsSampleFragment extends Fragment {
             tvGpsCurrentLat.setVisibility(View.VISIBLE);
             tvGpsCurrentLng.setVisibility(View.VISIBLE);
             tvGpsDistanceToDalvik.setVisibility(View.VISIBLE);
+            tvGpsCurrentAlt.setVisibility(View.VISIBLE);
+            tvGpsCurrentBearing.setVisibility(View.VISIBLE);
+            tvGpsCurrentAccuracy.setVisibility(View.VISIBLE);
 
             if (distance <= 100) {
                 Log.d(GpsSampleFragment.TAG, "Show location warning");

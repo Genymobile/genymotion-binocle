@@ -33,6 +33,24 @@
         android:text="@string/gps_currentLng" />
 
     <TextView
+        android:id="@+id/tv_gpsCurrentAlt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gps_currentAltitude" />
+
+    <TextView
+        android:id="@+id/tv_gpsCurrentBearing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gps_currentBearing" />
+
+    <TextView
+        android:id="@+id/tv_gpsCurrentAccuracy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gps_currentAccuracy" />
+
+    <TextView
         android:id="@+id/tv_gpsDistanceToDalvik"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
