@@ -14,6 +14,9 @@
     <string name="gps_explain">This activity will display a warning if the device is localised near (100 km) Dalvik.</string>
     <string name="gps_currentLat">Current latitude is %f</string>
     <string name="gps_currentLng">Current longitude is %f</string>
+    <string name="gps_currentAltitude">Current altitude is %f</string>
+    <string name="gps_currentBearing">Current bearing is %f</string>
+    <string name="gps_currentAccuracy">Current accuracy is %f</string>
     <string name="gps_distanceToDalvik">Dalvik is %d km away</string>
 
     <!-- radio labels -->
