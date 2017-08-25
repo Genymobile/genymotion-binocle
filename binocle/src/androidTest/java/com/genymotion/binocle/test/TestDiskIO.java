@@ -60,6 +60,7 @@ public class TestDiskIO  extends ActivityInstrumentationTestCase2<SampleActivity
 
         // XXX: this might fail on a slow test machine
         Assert.assertTrue(300 < activityByteRate);
+        Assert.assertEquals(-1, genymotion.getDiskIO().getByteRate());
     }
 
     public void testTooFast() {
@@ -74,6 +75,7 @@ public class TestDiskIO  extends ActivityInstrumentationTestCase2<SampleActivity
 
         // XXX: this might fail on a too fast or too slow test machine
         Assert.assertTrue(300 < activityByteRate && activityByteRate < 900);
+        Assert.assertEquals(1000 * 1024 * 1024, genymotion.getDiskIO().getByteRate());
     }
 
     private void diskIOTest(int byteRateMb) {
@@ -87,6 +89,7 @@ public class TestDiskIO  extends ActivityInstrumentationTestCase2<SampleActivity
         float activityByteRate = getActivityByteRate();
 
         Assert.assertTrue(.85 * activityByteRate < byteRateMb && byteRateMb < 1.15 * activityByteRate);
+        Assert.assertEquals(byteRateMb * 1024 * 1024, genymotion.getDiskIO().getByteRate());
     }
 
     private float getActivityByteRate() {
