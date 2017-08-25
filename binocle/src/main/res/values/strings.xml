@@ -38,5 +38,6 @@
     <string name="phone_waiting">Waiting for SMS with activation code…</string>
     <string name="phone_received">SMS received, activation code is valid!</string>
     <string name="phone_activation_picto_desc">Validation SMS received</string>
+    <string name="bench">Bench</string>
 
 </resources>
