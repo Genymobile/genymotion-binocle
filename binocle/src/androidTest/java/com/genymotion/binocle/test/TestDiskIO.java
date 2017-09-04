@@ -15,7 +15,7 @@ import com.genymotion.binocle.SampleActivity;
 
 import junit.framework.Assert;
 
-public class TestDiskIO  extends ActivityInstrumentationTestCase2<SampleActivity> {
+public class TestDiskIO extends ActivityInstrumentationTestCase2<SampleActivity> {
 
     private DiskIOSampleFragment fragmentDiskIO;
 
@@ -90,7 +90,7 @@ public class TestDiskIO  extends ActivityInstrumentationTestCase2<SampleActivity
                 return txt.toString();
             }
             SystemClock.sleep(1000);
-            max --;
+            max--;
         }
         return "";
     }
