@@ -43,6 +43,9 @@ public class SampleActivity extends AppCompatActivity {
                 case PhoneSampleFragment.TAG:
                     fragment = new PhoneSampleFragment();
                     break;
+                case DiskIOSampleFragment.TAG:
+                    fragment = new DiskIOSampleFragment();
+                    break;
                 default:
                     break;
             }
