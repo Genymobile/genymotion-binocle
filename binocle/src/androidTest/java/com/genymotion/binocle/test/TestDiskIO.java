@@ -37,32 +37,32 @@ public class TestDiskIO extends ActivityInstrumentationTestCase2<SampleActivity>
     }
 
     public void testDiskIOLowEnd() {
-        diskIOTest(50);
+        diskIOTest(50 * 1024);
     }
 
     public void testDiskIOMiddleRange() {
-        diskIOTest(100);
+        diskIOTest(100 * 1024);
     }
 
     public void testDiskIOHighEnd() {
-        diskIOTest(200);
+        diskIOTest(200 * 1024);
     }
 
-    private void diskIOTest(int byteRateMb) {
+    private void diskIOTest(int byteRateKB) {
         if (!GenymotionManager.isGenymotionDevice()) {
             // Avoid test on non Genymotion devices.
             return;
         }
 
         GenymotionManager genymotion = GenymotionManager.getGenymotionManager(getActivity());
-        genymotion.getDiskIO().setByteRate(byteRateMb * 1024 * 1024);
-        float activityByteRate = getActivityByteRate();
+        genymotion.getDiskIO().setByteRate(byteRateKB);
+        float activityByteRate = getActivityByteRateMBs() * 1024;
 
-        Assert.assertTrue(.85 * activityByteRate < byteRateMb && byteRateMb < 1.15 * activityByteRate);
-        Assert.assertEquals(byteRateMb * 1024 * 1024, genymotion.getDiskIO().getByteRate());
+        Assert.assertTrue(.85 * activityByteRate < byteRateKB && byteRateKB < 1.15 * activityByteRate);
+        Assert.assertEquals(byteRateKB, genymotion.getDiskIO().getByteRate());
     }
 
-    private float getActivityByteRate() {
+    private float getActivityByteRateMBs() {
         TextView tvResult = (TextView) fragmentDiskIO.getView().findViewById(R.id.result);
         final  Button bench = (Button) fragmentDiskIO.getView().findViewById(R.id.bench);
 
