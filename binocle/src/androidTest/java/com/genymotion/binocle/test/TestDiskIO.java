@@ -48,36 +48,6 @@ public class TestDiskIO  extends ActivityInstrumentationTestCase2<SampleActivity
         diskIOTest(200);
     }
 
-    public void testDisabled() {
-        if (!GenymotionManager.isGenymotionDevice()) {
-            // Avoid test on non Genymotion devices.
-            return;
-        }
-
-        GenymotionManager genymotion = GenymotionManager.getGenymotionManager(getActivity());
-        genymotion.getDiskIO().setByteRate(0);
-        float activityByteRate = getActivityByteRate();
-
-        // XXX: this might fail on a slow test machine
-        Assert.assertTrue(300 < activityByteRate);
-        Assert.assertEquals(-1, genymotion.getDiskIO().getByteRate());
-    }
-
-    public void testTooFast() {
-        if (!GenymotionManager.isGenymotionDevice()) {
-            // Avoid test on non Genymotion devices.
-            return;
-        }
-
-        GenymotionManager genymotion = GenymotionManager.getGenymotionManager(getActivity());
-        genymotion.getDiskIO().setByteRate(1000 * 1024 * 1024);
-        float activityByteRate = getActivityByteRate();
-
-        // XXX: this might fail on a too fast or too slow test machine
-        Assert.assertTrue(300 < activityByteRate && activityByteRate < 900);
-        Assert.assertEquals(1000 * 1024 * 1024, genymotion.getDiskIO().getByteRate());
-    }
-
     private void diskIOTest(int byteRateMb) {
         if (!GenymotionManager.isGenymotionDevice()) {
             // Avoid test on non Genymotion devices.
