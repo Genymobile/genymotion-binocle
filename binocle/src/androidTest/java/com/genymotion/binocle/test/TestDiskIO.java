@@ -66,24 +66,24 @@ public class TestDiskIO extends ActivityInstrumentationTestCase2<SampleActivity>
             }
         });
 
-        String currentResult = waitForText(tvResult); // eg: 10 Mb/s
-        float byteRate = Float.parseFloat(currentResult.split(" ")[0]);
-
-        return byteRate;
+        return waitForValue(tvResult); // eg: 10 Mb/s
     }
 
 
-    private String waitForText(TextView tv) {
+    private float waitForValue(TextView tv) {
         int max = 30;
 
         while (max > 0) {
-            CharSequence txt = tv.getText();
+            String txt = tv.getText().toString();
             if (txt.length() > 0) {
-                return txt.toString();
+                try {
+                    return Float.parseFloat(txt.split(" ")[0]);
+                } catch (NumberFormatException e) {
+                }
             }
             SystemClock.sleep(1000);
             max--;
         }
-        return "";
+        return 0;
     }
 }
