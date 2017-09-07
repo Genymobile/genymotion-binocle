@@ -47,11 +47,11 @@ public class TestDiskIO extends ActivityInstrumentationTestCase2<SampleActivity>
         }
 
         GenymotionManager genymotion = GenymotionManager.getGenymotionManager(getActivity());
-        genymotion.getDiskIO().setMaxReadByterate(byteRateKB);
+        genymotion.getDiskIO().setReadRateLimit(byteRateKB);
         float activityByteRate = getActivityByteRateMBs() * 1024;
 
         Assert.assertTrue(.85 * activityByteRate < byteRateKB && byteRateKB < 1.15 * activityByteRate);
-        Assert.assertEquals(byteRateKB, genymotion.getDiskIO().getMaxReadByterate());
+        Assert.assertEquals(byteRateKB, genymotion.getDiskIO().getReadRateLimit());
     }
 
     private float getActivityByteRateMBs() {
