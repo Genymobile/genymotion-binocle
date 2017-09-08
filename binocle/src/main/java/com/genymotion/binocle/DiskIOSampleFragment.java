@@ -32,6 +32,8 @@ public class DiskIOSampleFragment extends Fragment {
         createFileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TextView tv = (TextView)getActivity().findViewById(R.id.result);
+                tv.setText("reading...");
                 new BenchDiskIO().execute();
             }
         });
