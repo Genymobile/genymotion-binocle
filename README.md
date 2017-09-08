@@ -38,7 +38,7 @@ This part of the application displays a green check when the device receives an 
 * Here is an Android test of the behavior: [TestPhone.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/androidTest/java/com/genymotion/binocle/test/TestPhone.java)
 
 ### DiskIO
-This part of the application show a button to compute the read byterate of a file.
+This part of the application shows a button to compute the read byterate of a file.
 * Here is the fragment showing it: [DiskIOSampleFragment.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/main/java/com/genymotion/binocle/DiskIOSampleFragment.java)
 * Here is an Android test of the behavior:  [TestDiskIO.java](https://github.com/Genymobile/genymotion-binocle/blob/master/binocle/src/androidTest/java/com/genymotion/binocle/test/TestDiskIO.java)
 
