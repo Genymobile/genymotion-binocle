@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.genymotion.api.GenymotionManager;
+import com.genymotion.api.LocationParams;
 import com.genymotion.binocle.GpsSampleFragment;
 import com.genymotion.binocle.R;
 import com.genymotion.binocle.SampleActivity;
@@ -59,9 +60,11 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
 
         // Position near Dalvik
         Log.d(GpsSampleFragment.TAG, "Force position near Dalvik");
-        genymotion.getGps()
+        LocationParams params = new LocationParams.Builder()
                 .setLatitude(65.9446)
-                .setLongitude(-18.35744619);
+                .setLongitude(-18.35744619)
+                .build();
+        genymotion.getGps().setLocation(params);
 
         // Ensure warning is shown
         Assert.assertEquals(tvWarning.getVisibility(), View.VISIBLE);
