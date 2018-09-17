@@ -58,7 +58,7 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
                 .build();
         genymotion.getGps().setLocation(params);
         // Then ensure warning is hidden
-        Assert.assertEquals(tvWarning.getVisibility(), View.GONE);
+        Assert.assertEquals(View.GONE, tvWarning.getVisibility());
 
         // Position near Dalvik
         Log.d(GpsSampleFragment.TAG, "Force position near Dalvik");
@@ -69,6 +69,6 @@ public class TestGps extends ActivityInstrumentationTestCase2<SampleActivity> {
         genymotion.getGps().setLocation(params);
 
         // Ensure warning is shown
-        Assert.assertEquals(tvWarning.getVisibility(), View.VISIBLE);
+        Assert.assertEquals(View.VISIBLE, tvWarning.getVisibility());
     }
 }
