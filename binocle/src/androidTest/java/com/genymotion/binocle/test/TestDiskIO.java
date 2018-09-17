@@ -70,7 +70,7 @@ public class TestDiskIO extends ActivityInstrumentationTestCase2<SampleActivity>
     }
 
     private float waitForSpeedKBs() {
-        for (int i = 0; i < 30; ++i) {
+        for (int attempt = 0; attempt < 30; ++attempt) {
             float speed = fragmentDiskIO.getSpeedKBs();
             if (speed > 0) {
                 return speed;
