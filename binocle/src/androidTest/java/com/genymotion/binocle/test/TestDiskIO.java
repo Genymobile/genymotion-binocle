@@ -48,16 +48,14 @@ public class TestDiskIO extends ActivityInstrumentationTestCase2<SampleActivity>
 
         GenymotionManager genymotion = GenymotionManager.getGenymotionManager(getActivity());
         genymotion.getDiskIO().setReadRateLimit(byteRateKB);
-        float activityByteRate = getActivityByteRateMBs() * 1024;
+        float activityByteRate = getActivityByteRateKBs();
 
         Assert.assertTrue(.85 * activityByteRate < byteRateKB && byteRateKB < 1.15 * activityByteRate);
         Assert.assertEquals(byteRateKB, genymotion.getDiskIO().getReadRateLimit());
     }
 
-    private float getActivityByteRateMBs() {
-        TextView tvResult = (TextView) fragmentDiskIO.getView().findViewById(R.id.result);
+    private float getActivityByteRateKBs() {
         final  Button bench = (Button) fragmentDiskIO.getView().findViewById(R.id.bench);
-
 
         getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -66,24 +64,18 @@ public class TestDiskIO extends ActivityInstrumentationTestCase2<SampleActivity>
             }
         });
 
-        return waitForValue(tvResult); // eg: 10 Mb/s
+        return waitForSpeedKBs();
     }
 
-
-    private float waitForValue(TextView tv) {
-        int max = 30;
-
-        while (max > 0) {
-            String txt = tv.getText().toString();
-            if (txt.length() > 0) {
-                try {
-                    return Float.parseFloat(txt.split(" ")[0]);
-                } catch (NumberFormatException e) {
-                }
+    private float waitForSpeedKBs() {
+        for (int i = 0; i < 30; ++i) {
+            float speed = fragmentDiskIO.getSpeedKBs();
+            if (speed > 0) {
+                return speed;
             }
             SystemClock.sleep(1000);
-            max--;
         }
-        return 0;
+        Assert.fail("Could not read speed, waited 30s");
+        return -1;
     }
 }
