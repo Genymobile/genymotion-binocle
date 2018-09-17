@@ -23,6 +23,9 @@ public class DiskIOSampleFragment extends Fragment {
     private Button createFileBtn;
     private static final String FILENAME = "diskio_test";
     private static final long FILESIZE_MB = 200;
+    private static final long FILESIZE_KB = FILESIZE_MB * 1024;
+
+    private float speedKBs = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,6 +42,10 @@ public class DiskIOSampleFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    public float getSpeedKBs() {
+        return speedKBs;
     }
 
     private class BenchDiskIO extends AsyncTask<Void, Void, Long> {
@@ -59,7 +66,9 @@ public class DiskIOSampleFragment extends Fragment {
         @Override
         protected void onPostExecute(Long ms) {
             TextView tv = (TextView)getActivity().findViewById(R.id.result);
-            tv.setText(String.format("%.2f MB/s", (float)FILESIZE_MB / ms.floatValue() * 1000));
+            float seconds = ms / 1000f;
+            speedKBs = FILESIZE_KB / seconds;
+            tv.setText(String.format("%.2f KB/s", speedKBs));
 
         }
     }

@@ -57,12 +57,12 @@ public class TestPhone extends ActivityInstrumentationTestCase2<SampleActivity> 
         ImageView picto = (ImageView) fragmentPhone.getView().findViewById(R.id.phone_activation_picto);
 
         // Check that the image is now visible
-        Assert.assertEquals(picto.getVisibility(), View.VISIBLE);
+        Assert.assertEquals(View.VISIBLE, picto.getVisibility());
 
         // Send an SMS that doesnot contain "666" string
         genymotion.getRadio().sendSms("123456", "123");
 
         // Check that the image is now gone
-        Assert.assertEquals(picto.getVisibility(), View.GONE);
+        Assert.assertEquals(View.GONE, picto.getVisibility());
     }
 }

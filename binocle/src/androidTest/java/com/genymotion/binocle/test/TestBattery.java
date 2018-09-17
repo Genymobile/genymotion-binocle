@@ -54,7 +54,7 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
                 .setLevel(100)
                 .setStatus(Battery.Status.CHARGING);
         // Then ensure warning is hidden
-        Assert.assertEquals(tvWarning.getVisibility(), View.GONE);
+        Assert.assertEquals(View.GONE, tvWarning.getVisibility());
 
         // Change battery level and charging status
         Log.d(BatterySampleFragment.TAG, "Force low battery");
@@ -62,7 +62,7 @@ public class TestBattery extends ActivityInstrumentationTestCase2<SampleActivity
                 .setLevel(3)
                 .setStatus(Battery.Status.DISCHARGING);
         // Then ensure warning is visible
-        Assert.assertEquals(tvWarning.getVisibility(), View.VISIBLE);
+        Assert.assertEquals(View.VISIBLE, tvWarning.getVisibility());
 
         // set battery mode back to HOST
         genymotion.getBattery().setMode(Battery.Mode.HOST);
