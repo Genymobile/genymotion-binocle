@@ -16,6 +16,7 @@ import com.genymotion.binocle.SampleActivity;
 import junit.framework.Assert;
 
 public class TestDiskIO extends ActivityInstrumentationTestCase2<SampleActivity> {
+    private static final float TOLERANCE_PERCENT = 0.15f;
 
     private DiskIOSampleFragment fragmentDiskIO;
 
@@ -50,7 +51,8 @@ public class TestDiskIO extends ActivityInstrumentationTestCase2<SampleActivity>
         genymotion.getDiskIO().setReadRateLimit(byteRateKB);
         float activityByteRate = getActivityByteRateKBs();
 
-        Assert.assertTrue(.85 * activityByteRate < byteRateKB && byteRateKB < 1.15 * activityByteRate);
+        Assert.assertTrue((1 - TOLERANCE_PERCENT) * activityByteRate < byteRateKB);
+        Assert.assertTrue(byteRateKB < (1 + TOLERANCE_PERCENT) * activityByteRate);
         Assert.assertEquals(byteRateKB, genymotion.getDiskIO().getReadRateLimit());
     }
 
