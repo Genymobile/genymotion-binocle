@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+# This script creates the test file required by the DiskIOSampleFragment.
+# The file has to be created from the outside for the DiskIO test to pass: if
+# we let the fragment create it manually, then the file content remains cached
+# by the OS and we don't hit the DiskIO limitation.
+
+# Must be kept in sync with DiskIOSampleFragment
+TEST_FILE=diskio_test
+TEST_FILE_SIZE_MB=200
+ONE_MB=1048576
+
+echo "Creating DiskIO test file"
+
+# Escape the $ in front of EXTERNAL_STORAGE because this environment variable
+# is defined *inside* the device
+adb shell "dd if=/dev/zero of=\$EXTERNAL_STORAGE/Download/$TEST_FILE bs=$ONE_MB count=$TEST_FILE_SIZE_MB"

@@ -135,4 +135,5 @@ find_tools
 setup_account
 trap cleanup EXIT
 create_device
+"$SCRIPT_DIR/create_diskio_test_file"
 do_run_tests
