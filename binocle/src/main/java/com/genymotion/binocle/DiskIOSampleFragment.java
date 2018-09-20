@@ -1,8 +1,8 @@
 package com.genymotion.binocle;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,16 +15,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 public class DiskIOSampleFragment extends Fragment {
     public static final String TAG = "DiskIO";
     private Button createFileBtn;
-    private static final String FILENAME = "diskio_test";
-    private static final long FILESIZE_MB = 200;
-    private static final long FILESIZE_KB = FILESIZE_MB * 1024;
 
+    // Must be kept in sync with ci/create_diskio_test_file
+    private static final long FILESIZE_MB = 200;
+    private static final File testFile = new File(
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+            "diskio_test");
+
+    private static final long FILESIZE_KB = FILESIZE_MB * 1024;
+    private static final int ONE_MB = 1024 * 1024;
     private float speedKBs = 0;
 
     @Override
@@ -53,8 +56,8 @@ public class DiskIOSampleFragment extends Fragment {
         protected Long doInBackground(Void... voids) {
             long ms = -1;
             try {
-                createFileIfNeeded(FILENAME, FILESIZE_MB);
-                ms = benchRead(FILENAME);
+                createFileIfNeeded();
+                ms = benchRead();
             } catch (IOException e) {
                 Log.e(TAG, "IO error ");
                 e.printStackTrace();
@@ -73,32 +76,26 @@ public class DiskIOSampleFragment extends Fragment {
         }
     }
 
-    private void createFileIfNeeded(String fileName, long fileSizeMB) throws IOException {
-        List<String> fileList = Arrays.asList(getActivity().fileList());
-        if (fileList.contains(fileName)) {
-            File file = new File(getActivity().getFilesDir(), fileName);
-            if (file.length() != fileSizeMB * 1024 * 1024) {
-                createFile(fileName, fileSizeMB);
-            }
-        } else {
-            createFile(fileName, fileSizeMB);
+    private void createFileIfNeeded() throws IOException {
+        if (!testFile.exists() || testFile.length() != FILESIZE_MB * ONE_MB) {
+            createFile();
         }
     }
 
-    private void createFile(String fileName, long fileSizeMB) throws IOException {
+    private void createFile() throws IOException {
         Log.d(TAG, "creating file...");
-        FileOutputStream fo = getActivity().openFileOutput(fileName, Context.MODE_PRIVATE);
-        byte[] buff = new byte[1024 * 1024];
-        for (int i = 0; i < fileSizeMB; ++i) {
+        FileOutputStream fo = new FileOutputStream(testFile);
+        byte[] buff = new byte[ONE_MB];
+        for (int i = 0; i < FILESIZE_MB; ++i) {
             fo.write(buff);
         }
         fo.flush();
         fo.close();
     }
 
-    private long benchRead(String fileName) throws IOException {
-        FileInputStream fi = getActivity().openFileInput(fileName);
-        byte[] buff = new byte[1024 * 1024];
+    private long benchRead() throws IOException {
+        FileInputStream fi = new FileInputStream(testFile);
+        byte[] buff = new byte[ONE_MB];
         long before = System.currentTimeMillis();
         while (fi.read(buff) > 0) {
         }

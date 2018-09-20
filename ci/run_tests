@@ -1,0 +1,139 @@
+#!/bin/sh
+set -e
+
+PROGNAME=$(basename $0)
+
+OLD_PWD=$PWD
+cd "$(dirname $0)"
+SCRIPT_DIR=$PWD
+cd "$OLD_PWD"
+
+DEFAULT_TEMPLATE="Google Nexus 5X - 6.0.0 - API 23 - 1080x1920"
+
+GRADLE_OPTIONS="--stacktrace --debug"
+
+die() {
+    echo "$PROGNAME: $*" >&2
+    exit 1
+}
+
+usage() {
+    if [ "$*" != "" ] ; then
+        echo "Error: $*"
+    fi
+
+    cat << EOF
+Usage: $PROGNAME [OPTION ...] [device]
+Run Binocle tests.
+
+Options:
+  -h, --help                display this usage message and exit
+  -u, --user [USERNAME]     username to use
+  -p, --password [PASSWORD] password to use
+  -l, --license [LICENSE]   license to use
+  -i, --install-dir [DIR]   Genymotion install dir, looks in \$PATH if not set
+  -t, --template [TEMPLATE] template to use, defaults to "$DEFAULT_TEMPLATE"
+EOF
+
+    exit 1
+}
+
+username=""
+password=""
+license=""
+install_dir=""
+template=$DEFAULT_TEMPLATE
+device=""
+
+parse_args() {
+    while [ $# -gt 0 ] ; do
+        case "$1" in
+        -h|--help)
+            usage
+            ;;
+        -u|--user)
+            username="$2"
+            shift
+            ;;
+        -p|--password)
+            password="$2"
+            shift
+            ;;
+        -l|--license)
+            license="$2"
+            shift
+            ;;
+        -i|--install-dir)
+            install_dir="$2"
+            shift
+            ;;
+        -t|--template)
+            template="$2"
+            shift
+            ;;
+        -*)
+            usage "Unknown option '$1'"
+            ;;
+        *)
+            if [ -z "$device" ] ; then
+                device="$1"
+            else
+                usage "Too many arguments"
+            fi
+            ;;
+        esac
+        shift
+    done
+
+    if [ -z "$device" ] ; then
+        usage "Not enough arguments"
+    fi
+}
+
+find_tools() {
+    if [ -n "$install_dir" ] ; then
+        export PATH=$install_dir:$install_dir/tools:$PATH
+    fi
+    for tool in gmtool adb ; do
+        echo -n "gmtool="
+        if ! which $tool ; then
+            die "Could not find $tool"
+        fi
+    done
+}
+
+setup_account() {
+    if [ -n "$username" ] ; then
+        gmtool config "username=$username" "password=$password"
+    fi
+    if [ -n "$license" ] ; then
+        gmtool license register "$license"
+    fi
+}
+
+create_device() {
+    gmtool admin create "$template" "$device"
+    echo "Starting $device"
+    gmtool admin start "$device"
+    echo "$device started"
+}
+
+cleanup() {
+    gmtool admin stop "$device" || true
+    gmtool admin delete "$device"
+}
+
+do_run_tests() {
+    (
+        cd "$SCRIPT_DIR/.."
+        ./gradlew cAT $GRADLE_OPTIONS
+    )
+}
+
+parse_args "$@"
+find_tools
+setup_account
+trap cleanup EXIT
+create_device
+"$SCRIPT_DIR/create_diskio_test_file"
+do_run_tests
