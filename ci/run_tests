@@ -116,6 +116,14 @@ create_device() {
     echo "Starting $device"
     gmtool admin start "$device"
     echo "$device started"
+
+    # Set ANDROID_SERIAL to make sure create_diskio_test_file and gradle talk
+    # to the correct device
+    # Format of the line we are looking for :
+    # IP              : 12.34.56.78
+    local ip=$(gmtool admin details "$device" | awk '$1 ~ "IP" { print $3}')
+    export ANDROID_SERIAL=$ip:5555
+    echo "ANDROID_SERIAL=$ANDROID_SERIAL"
 }
 
 cleanup() {
